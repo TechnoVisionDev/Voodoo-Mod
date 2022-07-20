@@ -1,4 +1,4 @@
-package com.technovision.voodoo.event;
+package com.technovision.voodoo.events;
 
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.Voodoo;
