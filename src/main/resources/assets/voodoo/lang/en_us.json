@@ -1,5 +1,11 @@
 {
   "itemGroup.voodoo.main": "Voodoo",
+
   "item.voodoo.needle": "Needle",
-  "item.voodoo.poppet": "Poppet"
+  "item.voodoo.taglock_kit": "Taglock Kit",
+  "item.voodoo.taglock_kit_filled": "Taglock Kit",
+  "item.voodoo.poppet": "Poppet",
+
+  "text.voodoo.taglock_kit.bound": "From: %1$s",
+  "text.voodoo.taglock_kit.not_bound": "Empty"
 }
