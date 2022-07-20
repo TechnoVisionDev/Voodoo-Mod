@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SFS",
+    "KPK",
+    "RNR"
+  ],
+  "key": {
+    "P": {
+      "item": "voodoo:blank_poppet"
+    },
+    "N": {
+      "item": "voodoo:needle"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    },
+    "F": [
+      {
+        "item": "minecraft:salmon_bucket"
+      },
+      {
+        "item": "minecraft:cod_bucket"
+      },
+      {
+        "item": "minecraft:pufferfish_bucket"
+      },
+      {
+        "item": "minecraft:tropical_fish_bucket"
+      }
+    ],
+    "S": {
+      "item": "minecraft:sea_pickle"
+    },
+    "K": {
+      "item": "minecraft:kelp"
+    }
+  },
+  "result": {
+    "item": "voodoo:water_protection_poppet"
+  }
+}
