@@ -1,12 +1,8 @@
 package com.technovision.voodoo.util;
 
-import com.technovision.voodoo.Voodoo;
-import com.technovision.voodoo.registry.ModItems;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -38,7 +34,6 @@ public class BindingUtil {
         final NbtCompound tag = itemStack.getOrCreateNbt();
         tag.putUuid(BOUND_UUID, uuid);
         tag.putString(BOUND_NAME, name);
-        //ModelPredicateProviderRegistry.register(ModItems.TAGLOCK_KIT, new Identifier(Voodoo.MOD_ID, "filled"), (stack, clientWorld, livingEntity, num) -> 1);
     }
 
     /**
@@ -105,7 +100,7 @@ public class BindingUtil {
      * @return true if the ItemStack is bound, else false
      */
     public static boolean isBound(ItemStack stack) {
-        return stack.hasNbt() && stack.getNbt().getUuid(BOUND_UUID) != null;
+        return stack.hasNbt() && stack.getNbt().containsUuid(BOUND_UUID) && stack.getNbt().getUuid(BOUND_UUID) != null;
     }
 
     /**

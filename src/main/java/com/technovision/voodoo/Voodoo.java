@@ -20,7 +20,7 @@ public class Voodoo implements ModInitializer {
 
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
             new Identifier(MOD_ID, "main"),
-            () -> new ItemStack(ModItems.POPPET)
+            () -> new ItemStack(ModItems.poppetMap.get(Poppet.PoppetType.BLANK))
     );
 
     @Override

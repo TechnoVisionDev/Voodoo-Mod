@@ -1,11 +1,40 @@
 {
   "itemGroup.voodoo.main": "Voodoo",
 
+  "block.voodoo.poppet_shelf": "Poppet Shelf",
   "item.voodoo.needle": "Needle",
   "item.voodoo.taglock_kit": "Taglock Kit",
-  "item.voodoo.taglock_kit_filled": "Taglock Kit",
-  "item.voodoo.poppet": "Poppet",
+  "item.voodoo.blank_poppet": "Poppet",
+  "item.voodoo.voodoo_poppet": "Voodoo Poppet",
+  "item.voodoo.vampiric_poppet": "Vampiric Poppet",
+  "item.voodoo.reflector_poppet": "Reflector Poppet",
+  "item.voodoo.voodoo_protection_poppet": "Voodoo Protection Poppet",
+  "item.voodoo.death_protection_poppet": "Death Protection Poppet",
+  "item.voodoo.fire_protection_poppet": "Fire Protection Poppet",
+  "item.voodoo.water_protection_poppet": "Water Protection Poppet",
+  "item.voodoo.fall_protection_poppet": "Falldamage Protection Poppet",
+  "item.voodoo.explosion_protection_poppet": "Explosion Protection Poppet",
+  "item.voodoo.projectile_protection_poppet": "Projectile Protection Poppet",
+  "item.voodoo.wither_protection_poppet": "Wither Protection Poppet",
+  "item.voodoo.hunger_protection_poppet": "Hunger Protection Poppet",
+  "item.voodoo.potion_protection_poppet": "Potion Protection Poppet",
+  "item.voodoo.void_protection_poppet": "Void Protection Poppet",
+  "itemGroup.voodoo_group": "Voodoo",
 
   "text.voodoo.taglock_kit.bound": "From: %1$s",
-  "text.voodoo.taglock_kit.not_bound": "Empty"
+  "text.voodoo.taglock_kit.not_bound": "Empty",
+  "text.voodoo.poppet.bound": "Bound to: %1$s",
+  "text.voodoo.poppet.not_bound": "Not bound",
+  "text.voodoo.voodoo_protection.had": "%1$s had a Voodoo-Protection-Poppet",
+  "text.voodoo.poppet.used_up": "Your %1$s was used up",
+  "screen.voodoo.poppet_shelf": "Poppet Shelf (%1$s)",
+
+  "text.voodoo.poppet.disabled": "Disabled",
+  "text.voodoo.poppet.needle.disabled": "Needles disabled",
+  "text.voodoo.poppet.push.disabled": "Pushing disabled",
+  "text.voodoo.poppet.fire.disabled": "Burning disabled",
+  "text.voodoo.poppet.drowning.disabled": "Drowning disabled",
+
+  "sound.poppet.voodoo_protection.used": "Voodoo Protection Poppet activated",
+  "sound.poppet.potion_protection.used": "Potion Protection Poppet activated"
 }

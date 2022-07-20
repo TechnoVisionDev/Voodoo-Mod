@@ -1,0 +1,13 @@
+{
+	"parent": "voodoo:item/projectile_protection_poppet",
+	"textures": {
+		"1": "voodoo:item/projectile_protection_poppet",
+		"2": "voodoo:item/poppet_shield",
+		"4": "minecraft:models/armor/iron_layer_1",
+		"arrow1": "minecraft:item/arrow",
+		"arrow2": "voodoo:item/empty",
+		"arrow3": "voodoo:item/empty",
+		"arrow4": "voodoo:item/empty",
+		"particle": "voodoo:item/projectile_protection_poppet"
+	}
+}

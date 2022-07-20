@@ -1,5 +1,6 @@
 package com.technovision.voodoo.event;
 
+import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.Voodoo;
 import com.technovision.voodoo.registry.ModItems;
 import com.technovision.voodoo.util.BindingUtil;
@@ -22,7 +23,13 @@ public class ClientEvents {
             ModelPredicateProviderRegistry.register(
                     ModItems.TAGLOCK_KIT,
                     new Identifier(Voodoo.MOD_ID, "filled"),
-                    (itemStack, clientWorld, livingEntity, num) -> BindingUtil.isBound(itemStack) ? 1 : 0);
+                    (itemStack, clientWorld, livingEntity, num) -> BindingUtil.isBound(itemStack) ? 1 : 0
+            );
+            ModelPredicateProviderRegistry.register(
+                    ModItems.poppetMap.get(Poppet.PoppetType.PROJECTILE_PROTECTION),
+                    new Identifier(Voodoo.MOD_ID, "percentage_used"),
+                    (itemStack, clientWorld, livingEntity, num) -> Math.min(1, Math.max(0, itemStack.getDamage() / (float) itemStack.getMaxDamage()))
+            );
         });
     }
 }

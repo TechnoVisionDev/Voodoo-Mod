@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "voodoo:item/poppet",
-		"particle": "voodoo:item/poppet"
+		"1": "voodoo:item/blank_poppet",
+		"particle": "voodoo:item/blank_poppet"
 	},
 	"elements": [
 		{
