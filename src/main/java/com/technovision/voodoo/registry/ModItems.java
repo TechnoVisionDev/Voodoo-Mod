@@ -13,7 +13,7 @@ import net.minecraft.util.registry.Registry;
 public class ModItems {
 
     public static final Item NEEDLE = new Item(new FabricItemSettings().group(Voodoo.ITEM_GROUP));
-    public static final Item POPPET = new Item(new FabricItemSettings().group(Voodoo.ITEM_GROUP));
+    public static final Item POPPET = new Item(new FabricItemSettings().group(Voodoo.ITEM_GROUP).maxCount(1));
 
     public static void registerItems() {
         Registry.register(Registry.ITEM, new Identifier(Voodoo.MOD_ID, "needle"), NEEDLE);

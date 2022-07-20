@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EWE",
+    "SWS",
+    "RNR"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:brown_wool"
+    },
+    "E": [
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:charcoal"
+      }
+    ],
+    "S": {
+      "item": "minecraft:string"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    },
+    "N": {
+      "item": "voodoo:needle"
+    }
+  },
+  "result": {
+    "item": "voodoo:poppet"
+  }
+}
