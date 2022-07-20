@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "voodoo",
+  "version": "${version}",
+
+  "name": "Voodoo",
+  "description": "Voodoo Poppets in Minecraft",
+  "authors": [
+    "TechnoVision"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/voodoo",
+    "sources": "https://github.com/TechnoVisionDev/Voodoo-Mod"
+  },
+
+  "license": "LGPL-3.0",
+  "icon": "assets/voodoo/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.technovision.voodoo.Voodoo"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
