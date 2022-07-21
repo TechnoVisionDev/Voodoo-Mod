@@ -2,7 +2,9 @@ package com.technovision.voodoo.events;
 
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.util.PoppetUtil;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -35,6 +37,28 @@ public class VoodooEvents {
                     checkFoodStatus(player);
                 }
             }
+        });
+    }
+
+    /**
+     * Event that runs every time a player dies.
+     * Checks for a death protection poppet to save the player.
+     */
+    public static void onPlayerDeathEvent() {
+        ServerPlayerEvents.ALLOW_DEATH.register((player, damageSource, damageAmount) -> {
+            if (damageSource == DamageSource.OUT_OF_WORLD) return true;
+            Poppet poppet = PoppetUtil.getPlayerPoppet(player, DEATH_PROTECTION);
+            if (poppet != null) {
+                poppet.use();
+                player.setHealth(player.getMaxHealth() / 2);
+                player.clearStatusEffects();
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 45 * 20, 1));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 5 * 20, 1));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 40 * 20, 0));
+                player.getWorld().sendEntityStatus(player, (byte) 35);
+                return false;
+            }
+            return true;
         });
     }
 

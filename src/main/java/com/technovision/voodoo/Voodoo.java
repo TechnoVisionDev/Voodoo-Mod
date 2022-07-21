@@ -30,6 +30,7 @@ public class Voodoo implements ModInitializer {
         ModItems.registerItems();
         ModRecipes.registerRecipes();
         VoodooEvents.onServerTickEvent();
+        VoodooEvents.onPlayerDeathEvent();
         ClientEvents.propertyOverrideRegistry();
     }
 }
