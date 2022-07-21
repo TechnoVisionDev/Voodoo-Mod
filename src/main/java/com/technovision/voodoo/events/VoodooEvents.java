@@ -95,8 +95,6 @@ public class VoodooEvents {
             durabilityCost = usePoppet(poppet, durabilityCost);
         }
         if (durabilityCost > 0) {
-            // TODO: Add poppet shelf use
-            /**
             final List<Poppet> poppetsInShelves = PoppetUtil.getPoppetsInShelves(player);
             poppetsInShelves.removeIf(poppet -> !validPoppets.contains(poppet.getItem().getPoppetType()));
 
@@ -104,7 +102,6 @@ public class VoodooEvents {
                 Poppet poppet = poppetsInShelves.get(i);
                 durabilityCost = usePoppet(poppet, durabilityCost);
             }
-             */
         }
         if (durabilityCost != originalDurabilityCost) {
             doSpecialActions(event);

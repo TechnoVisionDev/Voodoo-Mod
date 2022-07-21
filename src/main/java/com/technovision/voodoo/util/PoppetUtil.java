@@ -1,6 +1,9 @@
 package com.technovision.voodoo.util;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.technovision.voodoo.Poppet;
+import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
 import com.technovision.voodoo.items.PoppetItem;
 import com.technovision.voodoo.registry.ModSounds;
 import net.minecraft.entity.Entity;
@@ -10,9 +13,11 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.ref.WeakReference;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Useful methods for accessing and using poppets.
@@ -20,6 +25,9 @@ import java.util.stream.Collectors;
  * @author TechnoVision
  */
 public class PoppetUtil {
+
+    private static final Cache<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache = CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.MINUTES).build();
+    private static final WeakHashMap<PoppetShelfBlockEntity, List<Poppet>> poppetCache = new WeakHashMap<>();;
 
     /**
      * Searches for a specific poppet that is bound to a player.
@@ -74,4 +82,73 @@ public class PoppetUtil {
                 .map(stack -> new Poppet(player, (PoppetItem) stack.getItem(), stack))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Retrieve all poppets of a player that are in his poppet shelves.
+     * This method utilises a cache, so that it does not have to iterate through all loaded TileEntities on each call.
+     *
+     * @param player The player
+     * @return The found poppets
+     */
+    public static List<Poppet> getPoppetsInShelves(ServerPlayerEntity player) {
+        return List.of();
+        // TODO: Fix
+        /**
+        List<WeakReference<PoppetShelfBlockEntity>> cachedShelves = poppetShelvesCache.getIfPresent(player.getUuid());
+        if (cachedShelves == null) {
+            cachedShelves = StreamSupport
+                    .stream(player.server.getWorlds().spliterator(), false)
+                    .flatMap(world -> world.blockEntityList.stream())
+                    .filter(tileEntity -> tileEntity instanceof PoppetShelfBlockEntity)
+                    .filter(poppetShelf -> player.getUuid().equals(((PoppetShelfBlockEntity) poppetShelf).getOwnerUuid()))
+                    .map(tileEntity -> new WeakReference<>((PoppetShelfBlockEntity) tileEntity))
+                    .collect(Collectors.toList());
+            poppetShelvesCache.put(player.getUuid(), cachedShelves);
+        }
+        final List<Poppet> poppets = new ArrayList<>();
+        for (Iterator<WeakReference<PoppetShelfBlockEntity>> iterator = cachedShelves.iterator(); iterator.hasNext(); ) {
+            WeakReference<PoppetShelfBlockEntity> cachedShelf = iterator.next();
+            final PoppetShelfBlockEntity poppetShelf = cachedShelf.get();
+            if (poppetShelf == null) {
+                iterator.remove();
+                continue;
+            }
+            List<Poppet> poppetList = poppetCache.get(poppetShelf);
+            if (poppetList == null) {
+                poppetList = poppetShelf
+                        .getInventory()
+                        .stream()
+                        .filter(stack -> player.getUuid().equals(BindingUtil.getBoundUUID(stack)))
+                        .map(stack -> new Poppet(poppetShelf, player, (PoppetItem) stack, stack))
+                        .collect(Collectors.toList());
+                poppetCache.put(poppetShelf, poppetList);
+            }
+            poppets.addAll(poppetList);
+        }
+        return poppets;
+         */
+    }
+
+    /**
+     * Clear the cached poppets of a poppet shelf.
+     * Should be used everytime the inventory of a poppet shelf changes
+     *
+     * @param poppetShelf The poppet shelf
+     */
+    public static void invalidateShelfCache(PoppetShelfBlockEntity poppetShelf) {
+        if (poppetShelf != null)
+            poppetCache.remove(poppetShelf);
+    }
+
+    /**
+     * Clear the cached poppets shelves of a player.
+     * Should be used everytime a new poppet shelf of a player is created.
+     *
+     * @param playerUUD The UUID of the owner of the player
+     */
+    public static void invalidateShelvesCache(UUID playerUUD) {
+        if (playerUUD != null)
+            poppetShelvesCache.invalidate(playerUUD);
+    }
+
 }

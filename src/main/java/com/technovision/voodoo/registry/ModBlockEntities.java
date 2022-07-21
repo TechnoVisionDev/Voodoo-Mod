@@ -1,7 +1,7 @@
 package com.technovision.voodoo.registry;
 
 import com.technovision.voodoo.Voodoo;
-import com.technovision.voodoo.entities.PoppetShelfBlockEntity;
+import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;

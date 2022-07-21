@@ -1,4 +1,4 @@
-package com.technovision.voodoo.entities;
+package com.technovision.voodoo.blocks.entities;
 
 import com.technovision.voodoo.VoodooDamageSource;
 import com.technovision.voodoo.util.BindingUtil;

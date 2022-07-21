@@ -1,13 +1,15 @@
 package com.technovision.voodoo.blocks;
 
-import com.technovision.voodoo.entities.PoppetShelfBlockEntity;
+import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
 import com.technovision.voodoo.registry.ModBlockEntities;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.ActionResult;
@@ -31,11 +33,6 @@ public class PoppetShelfBlock extends BlockWithEntity implements BlockEntityProv
                 .sounds(BlockSoundGroup.NETHER_BRICKS)
                 .nonOpaque()
         );
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return voxelShape;
     }
 
     /**
@@ -65,6 +62,24 @@ public class PoppetShelfBlock extends BlockWithEntity implements BlockEntityProv
             }
         }
         return ActionResult.SUCCESS;
+    }
+
+    /**
+     * Sets the owner of this block when placed
+     */
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        final BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof PoppetShelfBlockEntity && placer != null) {
+            ((PoppetShelfBlockEntity) blockEntity).setOwnerName(placer.getName().getString());
+            ((PoppetShelfBlockEntity) blockEntity).setOwnerUuid(placer.getUuid());
+        }
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return voxelShape;
     }
 
     @Override
