@@ -39,6 +39,7 @@ public class PoppetItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
+        if (poppetType == BLANK) return;
         if (isBound(stack)) {
             checkForNameUpdate(stack, world);
             tooltip.add(Text.translatable("text.voodoo.poppet.bound", getBoundName(stack)).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
