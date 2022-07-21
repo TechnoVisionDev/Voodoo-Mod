@@ -1,0 +1,18 @@
+{
+  "name": "Hunger Protection",
+  "icon": "voodoo:hunger_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "In the middle of a fight it can be difficult take the time to eat some food. Or you run out of food while exploring a large cave. $(br)In both situations a Hunger Protection Poppet will come in handy. Once your food level falls below a certain point it will automatically fill your belly for you."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Hunger Protection",
+      "recipe": "voodoo:hunger_protection_poppet",
+      "text": ""
+    }
+  ]
+}

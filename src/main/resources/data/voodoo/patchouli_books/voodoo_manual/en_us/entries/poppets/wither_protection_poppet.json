@@ -1,0 +1,17 @@
+{
+  "name": "Wither Protection",
+  "icon": "voodoo:wither_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Wither Protection Poppet works like the $(l:poppets/potion_protection_poppet)Potion Protection Poppet$(/l) but for the wither effect. However it will only ever use one durability point, no matter the level of the wither effect."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:wither_protection_poppet",
+      "text": ""
+    }
+  ]
+}

@@ -22,7 +22,7 @@ public class Voodoo implements ModInitializer {
     public static final String MOD_ID = "voodoo";
 
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
-            new Identifier(MOD_ID, "main"),
+            new Identifier(MOD_ID, "voodoo_group"),
             () -> new ItemStack(ModItems.poppetMap.get(Poppet.PoppetType.BLANK))
     );
 

@@ -33,6 +33,6 @@
     "java": ">=17"
   },
   "suggests": {
-    "another-mod": "*"
+    "patchouli": ">=1.19-74-FABRIC"
   }
 }

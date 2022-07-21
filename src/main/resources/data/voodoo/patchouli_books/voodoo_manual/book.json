@@ -1,0 +1,9 @@
+{
+  "name": "Voodoo Manual",
+  "landing_text": "The ultimate guide to voodoo magic. Whether you want to curse your enemies or protect yourself from harm. You have come to the right place.",
+  "book_texture": "patchouli:textures/gui/book_brown.png",
+  "model": "voodoo:voodoo_manual",
+  "creative_tab": "voodoo.voodoo_group",
+  "show_progress": false,
+  "version": 1
+}

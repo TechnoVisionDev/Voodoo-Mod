@@ -1,0 +1,17 @@
+{
+  "name": "Introduction",
+  "icon": "minecraft:book",
+  "category": "voodoo:basics",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Welcome to the Voodoo Manual. This book will teach you all you need to know about voodoo magic. $(br)To learn more about the practice of creating voodoo poppets you can head over to the chapter about them and start with the $(l:poppets/blank_poppet)Blank Poppet$(/l)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Voodoo Poppets",
+      "text": "After you created a poppet you will want to bind them to a player. In $(l:binding)Binding Poppets$(/l) you can learn how to do this. $(br)Finally if your want to store you poppets in a safe place you want to use a $(l:poppet_shelf)Poppet Shelf$(/l)."
+    }
+  ]
+}

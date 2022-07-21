@@ -1,0 +1,17 @@
+{
+  "name": "Fire Protection",
+  "icon": "voodoo:fire_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Lava, blazes, fireballs and other forms of fire have the potential to kill you within seconds. To protect you from this you can create a Fire Protection Poppet. If you are set on fire by any source it will absorb the damage and grant you fire resistance for a short amount of time."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:fire_protection_poppet",
+      "text": ""
+    }
+  ]
+}

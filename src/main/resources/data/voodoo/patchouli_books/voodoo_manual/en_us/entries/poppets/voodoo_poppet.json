@@ -1,0 +1,26 @@
+{
+  "name": "Voodoo Poppet",
+  "icon": "voodoo:voodoo_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Voodoo Poppet is probably the most interesting poppet in this book. It allows its creator to influence another player in multiple different ways. $(br)In order for this to work you will need to combine a normal poppet with leads, spider eyes and an enderpearl. If done correctly this will make it possible to create a strong binding to another player."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:voodoo_poppet",
+      "text": "Once a binding is established this will make it possible to inflict harm on the bound player and even to fling them around."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Abilities",
+      "text": "You can use the Voodoo Poppet in 4 different ways: $(li)You can sting needles into the poppet. This will inflict minor damage to the target. $(li)You can push the target into any direction you want. Even from a large distance. $(li)You can throw the poppet underwater. This will cause the target to slowly drown. $(li)You can throw the poppet into fire. While the poppet will slowly burn away it will cause significant harm to the target."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can use needles by holding the poppet in you main hand, a needle in you offhand and then holding and after a few seconds releasing the right mouse button. $(br)If you do the same without a needle in you offhand you will instead push the target around. $(br)$(c)$(l)Important$()$(br)If the target has a $(l:poppets/voodoo_protection_poppet)Voodoo Protection Poppet$(/l) bound to them it will destroy this poppet when activated."
+    }
+  ]
+}

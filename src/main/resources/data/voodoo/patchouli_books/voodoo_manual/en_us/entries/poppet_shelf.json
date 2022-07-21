@@ -1,0 +1,18 @@
+{
+  "name": "Poppet Shelf",
+  "icon": "voodoo:poppet_shelf",
+  "category": "voodoo:basics",
+  "read_by_default": true,
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Having a lot of poppet takes up quite a lot of inventory space.$(br)This is were the poppet shelf comes into play. It allows you to store your poppets in a safe place while still being able to take advantage of their effects.$(br)In order for the poppet shelf to work the chunk it is in must be loaded. A chunk loader is recommended."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:poppet_shelf",
+      "text": "Only poppets bound to the placer of the poppet shelf will be usable. The poppet shelf also displays the poppets it contains on top of it."
+    }
+  ]
+}

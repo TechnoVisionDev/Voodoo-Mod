@@ -1,0 +1,18 @@
+{
+  "name": "Fall Protection",
+  "icon": "voodoo:fall_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The premise of the Falldamage Protection Poppet is quite simple. It protects you from any falldamage you would normally take. $(br)The higher the fall the less the durability cost will increase. Also short falls might cost no durability at all."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Fall Protection Poppet",
+      "recipe": "voodoo:fall_protection_poppet",
+      "text": ""
+    }
+  ]
+}

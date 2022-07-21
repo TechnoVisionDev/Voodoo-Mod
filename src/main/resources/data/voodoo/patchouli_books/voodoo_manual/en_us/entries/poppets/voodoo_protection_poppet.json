@@ -1,0 +1,18 @@
+{
+  "name": "Voodoo Protection",
+  "icon": "voodoo:voodoo_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "If you've ever fallen victim to a Voodoo or Vampiric Poppet you know the feeling of helplessness that comes with it. It feels like you can't do anything against the invisible attack. $(br)The Voodoo Protection Poppet can prevent such attacks. If it detects a voodoo based attack it will immediately destroy itself and the attacking poppet."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Voodoo Protection",
+      "recipe": "voodoo:voodoo_protection_poppet",
+      "text": ""
+    }
+  ]
+}

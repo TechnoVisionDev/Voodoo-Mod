@@ -1,0 +1,16 @@
+{
+  "name": "Reflector Poppet",
+  "icon": "voodoo:reflector_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There are a lot of protection poppets you can choose from, but none that really helps against general PvE or PvP combat. $(br)This is solved by the Reflector Poppet. It reflects any damage that is inflicted to the bound player by another player or entity back to the attacker."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:reflector_poppet"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Void Protection",
+  "icon": "voodoo:void_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Falling into the void is one of the most frustrating ways to die. No way to save yourself and no way to get your items back. $(br)The Void Protection Poppet can prevent you from this fate. When you fell into the void and would normally die it will activate. It will bring you to your bed or if you have none to the world spawn."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:void_protection_poppet",
+      "text": "This power comes at a cost however. The poppet requires two enderpearls, some crying obsidian and phantom membranes to hold it all together."
+    }
+  ]
+}

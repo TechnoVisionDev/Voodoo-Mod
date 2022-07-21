@@ -1,0 +1,18 @@
+{
+  "name": "Binding Poppets",
+  "icon": "voodoo:taglock_kit",
+  "category": "voodoo:basics",
+  "read_by_default": true,
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "In order to bind poppets to a player you need to obtain a taglock of said player first. This can be done with the Taglock Kit. The Taglock Kit can be filled in three ways: $(li)Right clicking on a player to obtain their taglock $(li)Shift right clicking in the air to obtain your taglock $(li)Right clicking a bed to obtain the taglock of the latest sleeper in this bed"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:taglock_kit",
+      "text": "After you obtained a taglock you can craft it together with an unbound poppet to bind the poppet to the owner of the taglock."
+    }
+  ]
+}
