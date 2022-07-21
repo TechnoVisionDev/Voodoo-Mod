@@ -52,11 +52,9 @@ public class VoodooPoppetItem extends PoppetItem {
                         PoppetUtil.useVoodooProtectionPuppet(stack, user);
                         voodooProtectionPoppet.use();
                     } else {
-                        System.out.println("BEFORE: " + stack.getDamage());
                         stack.damage(2, user, (e) -> {
                             player.sendToolBreakStatus(player.getActiveHand());
                         });
-                        System.out.println("AFTER: " + stack.getDamage());
                         double deltaX = random.nextDouble() + 0.5;
                         double deltaY = random.nextDouble();
                         double deltaZ = random.nextDouble() + 0.5;
