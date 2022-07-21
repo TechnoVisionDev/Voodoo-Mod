@@ -23,6 +23,7 @@
     ]
   },
   "mixins": [
+    "voodoo.mixins.json"
   ],
 
   "depends": {

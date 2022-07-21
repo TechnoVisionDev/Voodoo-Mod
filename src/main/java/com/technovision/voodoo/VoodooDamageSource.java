@@ -23,7 +23,7 @@ public class VoodooDamageSource extends DamageSource {
 
     @Override
     public Text getDeathMessage(LivingEntity entity) {
-        return Text.literal(entity.getName().getContent() + " was killed by voodoo-magic."); //TODO: Translation
+        return Text.literal(entity.getName().getString() + " was killed by voodoo-magic."); //TODO: Translation
     }
 
     @Override
