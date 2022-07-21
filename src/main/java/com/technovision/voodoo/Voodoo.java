@@ -2,10 +2,7 @@ package com.technovision.voodoo;
 
 import com.technovision.voodoo.events.ClientEvents;
 import com.technovision.voodoo.events.VoodooEvents;
-import com.technovision.voodoo.registry.ModBlocks;
-import com.technovision.voodoo.registry.ModItems;
-import com.technovision.voodoo.registry.ModRecipes;
-import com.technovision.voodoo.registry.ModSounds;
+import com.technovision.voodoo.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -31,6 +28,8 @@ public class Voodoo implements ModInitializer {
     public void onInitialize() {
         ModItems.registerItems();
         ModBlocks.registerBlocks();
+        ModBlockEntities.registerBlockEntities();
+        ModScreens.registerScreens();
         ModRecipes.registerRecipes();
         ModSounds.registerSounds();
         VoodooEvents.onServerTickEvent();
