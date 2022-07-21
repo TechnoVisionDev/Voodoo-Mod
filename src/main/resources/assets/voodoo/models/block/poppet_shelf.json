@@ -1,0 +1,75 @@
+{
+	"__comment": "Designed by Hialus with Cubik Studio - https://cubik.studio",
+	"parent": "block/cube_all",
+	"textures": {
+		"particle": "block/red_nether_bricks",
+		"poppet_shelf": "voodoo:block/poppet_shelf"
+	},
+	"elements": [
+		{
+			"__comment": "Box1",
+			"from": [ 0.5, 0, 0.5 ],
+			"to": [ 15.5, 12, 15.5 ],
+			"faces": {
+				"down": { "uv": [ 0, 8, 8, 16 ], "texture": "#poppet_shelf" },
+				"up": { "uv": [ 0, 0, 8, 8 ], "texture": "#poppet_shelf" },
+				"north": { "uv": [ 8, 2, 16, 8 ], "texture": "#poppet_shelf" },
+				"south": { "uv": [ 8, 2, 16, 8 ], "texture": "#poppet_shelf" },
+				"west": { "uv": [ 8, 2, 16, 8 ], "texture": "#poppet_shelf" },
+				"east": { "uv": [ 8, 2, 16, 8 ], "texture": "#poppet_shelf" }
+			}
+		},
+		{
+			"__comment": "Box2",
+			"from": [ 0, 8.5, 0 ],
+			"to": [ 4, 12.5, 4 ],
+			"faces": {
+				"down": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf" },
+				"up": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf" },
+				"north": { "uv": [ 10, 8, 12, 10 ], "texture": "#poppet_shelf" },
+				"south": { "uv": [ 10, 10, 12, 12 ], "texture": "#poppet_shelf" },
+				"west": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf" },
+				"east": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf" }
+			}
+		},
+		{
+			"__comment": "Box2",
+			"from": [ 12, 8.5, 0 ],
+			"to": [ 16, 12.5, 4 ],
+			"faces": {
+				"down": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf", "rotation": 270 },
+				"up": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf", "rotation": 90 },
+				"north": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf" },
+				"south": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf" },
+				"west": { "uv": [ 10, 10, 12, 12 ], "texture": "#poppet_shelf" },
+				"east": { "uv": [ 10, 8, 12, 10 ], "texture": "#poppet_shelf" }
+			}
+		},
+		{
+			"__comment": "Box2",
+			"from": [ 0, 8.5, 11.9999 ],
+			"to": [ 4, 12.5, 15.9999 ],
+			"faces": {
+				"down": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf", "rotation": 90 },
+				"up": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf", "rotation": 270 },
+				"north": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf" },
+				"south": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf" },
+				"west": { "uv": [ 10, 8, 12, 10 ], "texture": "#poppet_shelf" },
+				"east": { "uv": [ 10, 10, 12, 12 ], "texture": "#poppet_shelf" }
+			}
+		},
+		{
+			"__comment": "Box2",
+			"from": [ 12, 8.5, 12 ],
+			"to": [ 16, 12.5, 16 ],
+			"faces": {
+				"down": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf", "rotation": 180 },
+				"up": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf", "rotation": 180 },
+				"north": { "uv": [ 10, 10, 12, 12 ], "texture": "#poppet_shelf" },
+				"south": { "uv": [ 10, 8, 12, 10 ], "texture": "#poppet_shelf" },
+				"west": { "uv": [ 8, 10, 10, 12 ], "texture": "#poppet_shelf" },
+				"east": { "uv": [ 8, 8, 10, 10 ], "texture": "#poppet_shelf" }
+			}
+		}
+	]
+}

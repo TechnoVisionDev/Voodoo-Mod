@@ -7,6 +7,7 @@ import com.technovision.voodoo.items.TaglockKitItem;
 import com.technovision.voodoo.items.VampiricPoppetItem;
 import com.technovision.voodoo.items.VoodooPoppetItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -26,11 +27,13 @@ public class ModItems {
 
     public static final Item NEEDLE = new Item(new FabricItemSettings().group(Voodoo.ITEM_GROUP));
     public static final TaglockKitItem TAGLOCK_KIT = new TaglockKitItem();
+    public static final BlockItem POPPET_SHELF = new BlockItem(ModBlocks.POPPET_SHELF_BLOCK, new FabricItemSettings().group(Voodoo.ITEM_GROUP));
     public static final Map<Poppet.PoppetType, PoppetItem> poppetMap = new HashMap<>();
 
     public static void registerItems() {
         Registry.register(Registry.ITEM, new Identifier(Voodoo.MOD_ID, "needle"), NEEDLE);
         Registry.register(Registry.ITEM, new Identifier(Voodoo.MOD_ID, "taglock_kit"), TAGLOCK_KIT);
+        Registry.register(Registry.ITEM, new Identifier(Voodoo.MOD_ID, "poppet_shelf"), POPPET_SHELF);
 
         // Register all poppets
         for (Poppet.PoppetType poppetType : Poppet.PoppetType.values()) {

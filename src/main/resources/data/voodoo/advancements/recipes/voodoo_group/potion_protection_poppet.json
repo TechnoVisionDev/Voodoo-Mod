@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "voodoo:potion_protection_poppet"
+    ]
+  },
+  "criteria": {
+    "has_blank_poppet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "voodoo:blank_poppet"
+            ]
+          }
+        ]
+      }
+    },
+    "brewed_potion": {
+      "trigger": "minecraft:brewed_potion",
+      "conditions": {}
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "voodoo:potion_protection_poppet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blank_poppet",
+      "brewed_potion",
+      "has_the_recipe"
+    ]
+  ]
+}

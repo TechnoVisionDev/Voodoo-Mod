@@ -2,6 +2,7 @@ package com.technovision.voodoo;
 
 import com.technovision.voodoo.events.ClientEvents;
 import com.technovision.voodoo.events.VoodooEvents;
+import com.technovision.voodoo.registry.ModBlocks;
 import com.technovision.voodoo.registry.ModItems;
 import com.technovision.voodoo.registry.ModRecipes;
 import com.technovision.voodoo.registry.ModSounds;
@@ -29,6 +30,7 @@ public class Voodoo implements ModInitializer {
     @Override
     public void onInitialize() {
         ModItems.registerItems();
+        ModBlocks.registerBlocks();
         ModRecipes.registerRecipes();
         ModSounds.registerSounds();
         VoodooEvents.onServerTickEvent();
