@@ -23,7 +23,7 @@ public class PoppetItem extends Item {
     protected final Poppet.PoppetType poppetType;
 
     public PoppetItem(Poppet.PoppetType poppetType) {
-        super(new FabricItemSettings().group(Voodoo.ITEM_GROUP).maxCount(1));
+        super(new FabricItemSettings().group(Voodoo.ITEM_GROUP).maxCount(1).maxDamage(poppetType.getDurability()));
         this.poppetType = poppetType;
     }
 
