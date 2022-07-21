@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 /**
  * Poppet entity that is attached to voodoo poppets.
+ *
  * @author TechnoVision
  */
 public class PoppetItemEntity extends ItemEntity {

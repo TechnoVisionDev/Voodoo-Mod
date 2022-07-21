@@ -8,6 +8,11 @@ import net.minecraft.text.Text;
 
 import static com.technovision.voodoo.VoodooDamageSource.VoodooDamageType.FIRE;
 
+/**
+ * Custom damage source from voodoo and vampiric poppets.
+ *
+ * @author TechnoVision
+ */
 public class VoodooDamageSource extends DamageSource {
 
     private VoodooDamageType damageType;

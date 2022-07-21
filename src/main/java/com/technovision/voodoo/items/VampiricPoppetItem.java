@@ -13,6 +13,11 @@ import net.minecraft.world.World;
 import static com.technovision.voodoo.Poppet.PoppetType.VAMPIRIC;
 import static com.technovision.voodoo.util.BindingUtil.getBoundPlayer;
 
+/**
+ * Special poppet that drains health from tagged player.
+ *
+ * @author TechnoVision
+ */
 public class VampiricPoppetItem extends PoppetItem {
 
     private static final int DRAINAGE_INTERVAL = 20;

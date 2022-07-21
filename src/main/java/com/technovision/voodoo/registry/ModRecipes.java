@@ -6,6 +6,11 @@ import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+/**
+ * Creates and registers crafting recipes.
+ *
+ * @author TechnoVision
+ */
 public class ModRecipes {
 
     public static final SpecialRecipeSerializer<BindPoppetRecipe> BIND_POPPET_RECIPE = new SpecialRecipeSerializer<>(BindPoppetRecipe::new);

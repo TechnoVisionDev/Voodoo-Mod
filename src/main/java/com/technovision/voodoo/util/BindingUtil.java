@@ -7,6 +7,11 @@ import net.minecraft.world.World;
 
 import java.util.UUID;
 
+/**
+ * Useful methods for binding a user to NBT data tag,
+ *
+ * @author TechnoVision
+ */
 public class BindingUtil {
 
     // Constants used for NBT tags

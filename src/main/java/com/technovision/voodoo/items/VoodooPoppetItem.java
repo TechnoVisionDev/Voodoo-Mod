@@ -18,6 +18,11 @@ import java.util.Random;
 import static com.technovision.voodoo.Poppet.PoppetType.VOODOO;
 import static com.technovision.voodoo.util.BindingUtil.getBoundPlayer;
 
+/**
+ * Special poppet that allows you to damage the tagged player.
+ *
+ * @author TechnoVision
+ */
 public class VoodooPoppetItem extends PoppetItem {
 
     private static final Random random = new Random();

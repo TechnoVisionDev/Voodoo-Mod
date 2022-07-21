@@ -7,7 +7,9 @@ import net.minecraft.text.Text;
 import org.apache.commons.lang3.text.WordUtils;
 
 /**
- * Created by Timor Morrien
+ * Represents a basic poppet object.
+ *
+ * @author TechnoVision
  */
 public class Poppet {
     private final PlayerEntity player;

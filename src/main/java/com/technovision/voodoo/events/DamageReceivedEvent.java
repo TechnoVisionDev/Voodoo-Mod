@@ -3,6 +3,11 @@ package com.technovision.voodoo.events;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+/**
+ * Stores data to be passed to DamageReceivedEvent.
+ *
+ * @author TechnoVision
+ */
 public class DamageReceivedEvent {
 
     private ServerPlayerEntity player;

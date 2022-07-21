@@ -19,6 +19,7 @@ import static com.technovision.voodoo.Poppet.PoppetType.VOODOO;
 
 /**
  * Creates and registers mod items.
+ *
  * @author TechnoVision
  */
 public class ModItems {

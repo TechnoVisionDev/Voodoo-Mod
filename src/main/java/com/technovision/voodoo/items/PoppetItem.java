@@ -18,6 +18,11 @@ import java.util.List;
 import static com.technovision.voodoo.Poppet.PoppetType.*;
 import static com.technovision.voodoo.util.BindingUtil.*;
 
+/**
+ * Base poppet item.
+ *
+ * @author TechnoVision
+ */
 public class PoppetItem extends Item {
 
     protected final Poppet.PoppetType poppetType;

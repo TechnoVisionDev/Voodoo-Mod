@@ -13,6 +13,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
+/**
+ * Custom special recipe that binds a taglock to a poppet, passing NBT tag data.
+ *
+ * @author TechnoVision
+ */
 public class BindPoppetRecipe extends SpecialCraftingRecipe {
 
     public BindPoppetRecipe(Identifier id) {

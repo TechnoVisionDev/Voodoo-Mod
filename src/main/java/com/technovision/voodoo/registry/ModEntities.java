@@ -1,7 +1,10 @@
 package com.technovision.voodoo.registry;
 
-import com.technovision.voodoo.entities.PoppetItemEntity;
-
+/**
+ * Creates and registers entities.
+ *
+ * @author TechnoVision
+ */
 public class ModEntities {
 
 

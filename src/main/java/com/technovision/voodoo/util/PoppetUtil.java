@@ -14,6 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Useful methods for accessing and using poppets.
+ *
+ * @author TechnoVision
+ */
 public class PoppetUtil {
 
     /**
