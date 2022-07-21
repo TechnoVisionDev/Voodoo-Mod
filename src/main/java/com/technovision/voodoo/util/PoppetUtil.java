@@ -1,7 +1,5 @@
 package com.technovision.voodoo.util;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
 import com.technovision.voodoo.items.PoppetItem;
@@ -9,14 +7,15 @@ import com.technovision.voodoo.registry.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 
 import java.lang.ref.WeakReference;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
@@ -26,8 +25,13 @@ import java.util.stream.StreamSupport;
  */
 public class PoppetUtil {
 
-    private static final Cache<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache = CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.MINUTES).build();
-    private static final WeakHashMap<PoppetShelfBlockEntity, List<Poppet>> poppetCache = new WeakHashMap<>();;
+    public static final Map<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache;
+    private static final WeakHashMap<PoppetShelfBlockEntity, List<Poppet>> poppetCache;
+
+    static {
+        poppetShelvesCache = new HashMap<>();
+        poppetCache = new WeakHashMap<>();
+    }
 
     /**
      * Searches for a specific poppet that is bound to a player.
@@ -41,7 +45,11 @@ public class PoppetUtil {
                 .stream()
                 .filter(poppet -> poppet.getItem().getPoppetType() == poppetType)
                 .findFirst()
-                .orElse(null);
+                .orElseGet(() -> getPoppetsInShelves(player)
+                    .stream()
+                    .filter(poppet -> poppet.getItem().getPoppetType() == poppetType)
+                    .findFirst()
+                    .orElse(null));
     }
 
     /**
@@ -91,17 +99,13 @@ public class PoppetUtil {
      * @return The found poppets
      */
     public static List<Poppet> getPoppetsInShelves(ServerPlayerEntity player) {
-        return List.of();
-        // TODO: Fix
-        /**
-        List<WeakReference<PoppetShelfBlockEntity>> cachedShelves = poppetShelvesCache.getIfPresent(player.getUuid());
+        List<WeakReference<PoppetShelfBlockEntity>> cachedShelves = poppetShelvesCache.get(player.getUuid());
         if (cachedShelves == null) {
             cachedShelves = StreamSupport
                     .stream(player.server.getWorlds().spliterator(), false)
-                    .flatMap(world -> world.blockEntityList.stream())
-                    .filter(tileEntity -> tileEntity instanceof PoppetShelfBlockEntity)
-                    .filter(poppetShelf -> player.getUuid().equals(((PoppetShelfBlockEntity) poppetShelf).getOwnerUuid()))
-                    .map(tileEntity -> new WeakReference<>((PoppetShelfBlockEntity) tileEntity))
+                    .flatMap(world -> getPoppetShelvesStream(player.server))
+                    .filter(poppetShelf -> player.getUuid().equals(poppetShelf.getOwnerUuid()))
+                    .map(WeakReference::new)
                     .collect(Collectors.toList());
             poppetShelvesCache.put(player.getUuid(), cachedShelves);
         }
@@ -116,17 +120,16 @@ public class PoppetUtil {
             List<Poppet> poppetList = poppetCache.get(poppetShelf);
             if (poppetList == null) {
                 poppetList = poppetShelf
-                        .getInventory()
+                        .getItems()
                         .stream()
                         .filter(stack -> player.getUuid().equals(BindingUtil.getBoundUUID(stack)))
-                        .map(stack -> new Poppet(poppetShelf, player, (PoppetItem) stack, stack))
+                        .map(stack -> new Poppet(poppetShelf, player, (PoppetItem) stack.getItem(), stack))
                         .collect(Collectors.toList());
                 poppetCache.put(poppetShelf, poppetList);
             }
             poppets.addAll(poppetList);
         }
         return poppets;
-         */
     }
 
     /**
@@ -148,7 +151,31 @@ public class PoppetUtil {
      */
     public static void invalidateShelvesCache(UUID playerUUD) {
         if (playerUUD != null)
-            poppetShelvesCache.invalidate(playerUUD);
+            poppetShelvesCache.remove(playerUUD);
     }
 
+    public static void removePoppetShelf(UUID ownerUUID, PoppetShelfBlockEntity poppetShelf) {
+        if (ownerUUID == null || poppetShelf.getWorld() == null || poppetShelf.getWorld().isClient()) return;
+        final List<WeakReference<PoppetShelfBlockEntity>> weakShelves = poppetShelvesCache.get(ownerUUID);
+        if (weakShelves != null) {
+            weakShelves.removeIf(weakShelf -> weakShelf.get() == null || weakShelf.get() == poppetShelf);
+            if (weakShelves.isEmpty())
+                poppetShelvesCache.remove(ownerUUID);
+        }
+    }
+
+    public static void addPoppetShelf(UUID ownerUUID, PoppetShelfBlockEntity poppetShelf) {
+        if (ownerUUID == null || (poppetShelf.getWorld() != null && poppetShelf.getWorld().isClient())) return;
+        removePoppetShelf(ownerUUID, poppetShelf);
+        poppetShelvesCache.putIfAbsent(ownerUUID, new ArrayList<>());
+        final List<WeakReference<PoppetShelfBlockEntity>> weakShelves = poppetShelvesCache.get(ownerUUID);
+        weakShelves.add(new WeakReference<>(poppetShelf));
+    }
+
+    public static Stream<PoppetShelfBlockEntity> getPoppetShelvesStream(MinecraftServer server) {
+        return poppetShelvesCache.values().stream()
+                .flatMap(Collection::stream)
+                .map(WeakReference::get)
+                .filter(Objects::nonNull);
+    }
 }

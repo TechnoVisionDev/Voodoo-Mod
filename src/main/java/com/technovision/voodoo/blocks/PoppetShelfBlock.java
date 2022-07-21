@@ -71,9 +71,9 @@ public class PoppetShelfBlock extends BlockWithEntity implements BlockEntityProv
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
         final BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof PoppetShelfBlockEntity && placer != null) {
-            ((PoppetShelfBlockEntity) blockEntity).setOwnerName(placer.getName().getString());
-            ((PoppetShelfBlockEntity) blockEntity).setOwnerUuid(placer.getUuid());
+        if (blockEntity instanceof PoppetShelfBlockEntity poppetShelfBlockEntity && placer != null) {
+            poppetShelfBlockEntity.setOwnerName(placer.getName().getString());
+            poppetShelfBlockEntity.setOwnerUuid(placer.getUuid());
         }
     }
 

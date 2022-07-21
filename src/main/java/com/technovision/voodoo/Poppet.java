@@ -1,10 +1,13 @@
 package com.technovision.voodoo;
 
+import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
 import com.technovision.voodoo.items.PoppetItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.Optional;
 
 /**
  * Represents a basic poppet object.
@@ -13,10 +16,18 @@ import org.apache.commons.lang3.text.WordUtils;
  */
 public class Poppet {
     private final PlayerEntity player;
+    private final Optional<PoppetShelfBlockEntity> poppetShelf;
     private final PoppetItem item;
     private final ItemStack stack;
 
+    public Poppet(PoppetShelfBlockEntity poppetShelf, PlayerEntity player, PoppetItem item, ItemStack stack) {
+        this.poppetShelf = Optional.of(poppetShelf);
+        this.player = player;
+        this.item = item;
+        this.stack = stack;
+    }
     public Poppet(PlayerEntity player, PoppetItem item, ItemStack stack) {
+        this.poppetShelf = Optional.empty();
         this.player = player;
         this.item = item;
         this.stack = stack;
@@ -27,7 +38,12 @@ public class Poppet {
     }
 
     public ItemStack getStack() {
+        poppetShelf.ifPresent(PoppetShelfBlockEntity::inventoryTouched);
         return stack;
+    }
+
+    public Optional<PoppetShelfBlockEntity> getPoppetShelf() {
+        return poppetShelf;
     }
 
     public void use() {
@@ -44,6 +60,7 @@ public class Poppet {
         } else {
             decrement();
         }
+        poppetShelf.ifPresent(PoppetShelfBlockEntity::inventoryTouched);
     }
 
     private void decrement() {

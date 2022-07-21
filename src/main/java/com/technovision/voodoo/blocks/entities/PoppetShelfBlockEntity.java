@@ -20,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.UUID;
 
 public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
@@ -35,7 +34,10 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, PoppetShelfBlockEntity entity) {
-        // TODO: Implement
+        if (!world.isClient() && entity.inventoryTouched) {
+            entity.inventoryTouched = false;
+            entity.markDirty();
+        }
     }
 
     public void inventoryTouched() {
@@ -49,9 +51,10 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
 
     public void setOwnerUuid(UUID ownerUuid) {
         if (this.ownerUuid != ownerUuid) {
-            PoppetUtil.invalidateShelvesCache(this.ownerUuid);
+            PoppetUtil.removePoppetShelf(this.ownerUuid, this);
             this.ownerUuid = ownerUuid;
-            PoppetUtil.invalidateShelvesCache(this.ownerUuid);
+            PoppetUtil.addPoppetShelf(this.ownerUuid, this);
+            this.markDirty();
         }
     }
 
@@ -61,6 +64,7 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
 
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
+        this.markDirty();
     }
 
     @Override
@@ -70,7 +74,6 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
 
     @Override
     public Text getDisplayName() {
-        // TODO: Fix
         MutableText component;
         if (this.getOwnerName() == null) {
             component = Text.translatable("text.voodoo.poppet.not_bound");
@@ -93,11 +96,32 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
+        if (ownerUuid != null)
+            nbt.putUuid("owner_uuid", ownerUuid);
+        if (ownerName != null)
+            nbt.putString("owner_name", ownerName);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
-        Inventories.readNbt(nbt, inventory);
         super.readNbt(nbt);
+        Inventories.readNbt(nbt, inventory);
+        PoppetUtil.removePoppetShelf(this.ownerUuid, this);
+        if (nbt.containsUuid("owner_uuid"))
+            this.ownerUuid = nbt.getUuid("owner_uuid");
+        if (nbt.contains("owner_name"))
+            this.ownerName = nbt.getString("owner_name");
+        PoppetUtil.addPoppetShelf(this.ownerUuid, this);
+    }
+
+    @Override
+    public void markRemoved() {
+        super.markRemoved();
+        PoppetUtil.removePoppetShelf(this.ownerUuid, this);
+    }
+
+    @Override
+    public void onClose(PlayerEntity player) {
+        PoppetShelfBlockEntity.this.inventoryTouched();
     }
 }

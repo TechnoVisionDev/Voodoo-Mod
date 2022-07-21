@@ -162,10 +162,6 @@ public class VoodooEvents {
         return suitablePoppets;
     }
 
-    /**
-     *
-     * @param event
-     */
     private static void doSpecialActions(DamageReceivedEvent event) {
         final DamageSource damageSource = event.getSource();
         final ServerPlayerEntity player = event.getPlayer();
