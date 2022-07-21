@@ -1,0 +1,6 @@
+{
+  "poppet.voodoo_protection.used": {
+    "subtitle": "sound.poppet.voodoo_protection.used",
+    "sounds": [ "minecraft:item/totem/use_totem" ]
+  }
+}

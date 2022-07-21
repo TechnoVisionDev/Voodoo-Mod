@@ -4,6 +4,7 @@ import com.technovision.voodoo.events.ClientEvents;
 import com.technovision.voodoo.events.VoodooEvents;
 import com.technovision.voodoo.registry.ModItems;
 import com.technovision.voodoo.registry.ModRecipes;
+import com.technovision.voodoo.registry.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -29,6 +30,7 @@ public class Voodoo implements ModInitializer {
     public void onInitialize() {
         ModItems.registerItems();
         ModRecipes.registerRecipes();
+        ModSounds.registerSounds();
         VoodooEvents.onServerTickEvent();
         VoodooEvents.onPlayerDeathEvent();
         ClientEvents.propertyOverrideRegistry();

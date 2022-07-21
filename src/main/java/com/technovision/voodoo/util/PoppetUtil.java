@@ -2,10 +2,12 @@ package com.technovision.voodoo.util;
 
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.items.PoppetItem;
+import com.technovision.voodoo.registry.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -41,14 +43,12 @@ public class PoppetUtil {
     public static void useVoodooProtectionPuppet(ItemStack voodooPoppet, Entity source) {
         if (source instanceof final PlayerEntity fromPlayer) {
             fromPlayer.sendMessage(Text.translatable("text.voodoo.voodoo_protection.had", BindingUtil.getBoundName(voodooPoppet)), true);
-            voodooPoppet.damage(Integer.MAX_VALUE, fromPlayer, playerEntity -> {
+            voodooPoppet.damage(Poppet.PoppetType.VOODOO.getDurability(), fromPlayer, playerEntity -> {
                 playerEntity.sendToolBreakStatus(playerEntity.getActiveHand());
-                // TODO: Add sound
-                //playerEntity.world.playSound(null, playerEntity, SoundRegistry.voodooProtectionPoppetUsed.get(), SoundSource.PLAYERS, 1, 1);
+                playerEntity.getWorld().playSoundFromEntity(null, playerEntity, ModSounds.VOODOO_PROTECTION_POPPET_USED, SoundCategory.PLAYERS, 1.0f, 1.0f);
             });
         } else {
-            // TODO: Add sound
-            //source.world.playSound(null, source, SoundRegistry.voodooProtectionPoppetUsed.get(), SoundSource.PLAYERS, 1, 1);
+            source.getWorld().playSoundFromEntity(null, source, ModSounds.VOODOO_PROTECTION_POPPET_USED, SoundCategory.PLAYERS, 1.0f, 1.0f);
             voodooPoppet.decrement(1);
         }
     }

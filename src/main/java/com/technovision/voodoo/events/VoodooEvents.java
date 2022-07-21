@@ -12,7 +12,6 @@ import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -118,6 +117,11 @@ public class VoodooEvents {
         return false;
     }
 
+    /**
+     * Uses the reflector poppet to reflect damage back to attacker.
+     * @param event the event details.
+     * @return true if event should be canceled.
+     */
     private static boolean tryReflectorPoppet(DamageReceivedEvent event) {
         if (!(event.getSource() instanceof EntityDamageSource)) return false;
         final Entity sourceEntity = event.getSource().getSource();
@@ -131,6 +135,11 @@ public class VoodooEvents {
         return true;
     }
 
+    /**
+     * Get a list of all poppets that may apply to the given damage event.
+     * @param event the event details.
+     * @return a list of poppet types that apply to given damage event.
+     */
     public static List<Poppet.PoppetType> getProtectionPoppets(DamageReceivedEvent event) {
         final DamageSource damageSource = event.getSource();
         List<Poppet.PoppetType> suitablePoppets = new ArrayList<>();
@@ -156,35 +165,33 @@ public class VoodooEvents {
         return suitablePoppets;
     }
 
+    /**
+     *
+     * @param event
+     */
     private static void doSpecialActions(DamageReceivedEvent event) {
         final DamageSource damageSource = event.getSource();
         final ServerPlayerEntity player = event.getPlayer();
-
         if (damageSource.isFire()) {
             player.setOnFire(false);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 10 * 20, 0));
         }
-
         if (damageSource == DROWN) {
             player.setAir(300);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 20 * 20, 0));
         }
-
         if (damageSource.isProjectile() && damageSource.getSource() instanceof ArrowEntity) {
             damageSource.getSource().kill();
         }
-
         if (damageSource instanceof final VoodooDamageSource voodooDamageSource) {
             PoppetUtil.useVoodooProtectionPuppet(voodooDamageSource.getVoodooPoppet(), voodooDamageSource.getFromEntity());
         }
-
         if (damageSource == OUT_OF_WORLD && player.getY() < 0) {
             player.fallDistance = 0;
-            final ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
-            BlockPos spawnPos = serverPlayer.getSpawnPointPosition();
-            ServerWorld serverWorld = serverPlayer.server.getWorld(serverPlayer.getSpawnPointDimension());
+            BlockPos spawnPos = player.getSpawnPointPosition();
+            ServerWorld serverWorld = player.server.getWorld(player.getSpawnPointDimension());
             if (serverWorld == null)
-                serverWorld = serverPlayer.server.getOverworld();
+                serverWorld = player.server.getOverworld();
             if (spawnPos == null) {
                 spawnPos = new BlockPos(
                         serverWorld.getSpawnPos().getX(),
@@ -192,13 +199,13 @@ public class VoodooEvents {
                         serverWorld.getSpawnPos().getZ()
                 );
             }
-            serverPlayer.teleport(
+            player.teleport(
                     serverWorld,
                     spawnPos.getX(),
                     spawnPos.getY() + 1,
                     spawnPos.getZ(),
-                    serverPlayer.getYaw(),
-                    serverPlayer.getPitch()
+                    player.getYaw(),
+                    player.getPitch()
             );
         }
     }
