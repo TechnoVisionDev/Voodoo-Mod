@@ -1,6 +1,7 @@
 package com.technovision.voodoo;
 
 import com.technovision.voodoo.events.ClientEvents;
+import com.technovision.voodoo.events.VoodooEvents;
 import com.technovision.voodoo.registry.ModItems;
 import com.technovision.voodoo.registry.ModRecipes;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +29,7 @@ public class Voodoo implements ModInitializer {
     public void onInitialize() {
         ModItems.registerItems();
         ModRecipes.registerRecipes();
+        VoodooEvents.onServerTickEvent();
         ClientEvents.propertyOverrideRegistry();
     }
 }
