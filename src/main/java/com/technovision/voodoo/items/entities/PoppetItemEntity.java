@@ -70,8 +70,9 @@ public class PoppetItemEntity extends ItemEntity {
         this.decreaseAirSupply(boundPlayer);
         if (boundPlayer.getAir() > -40) return;
         boundPlayer.setAir(0);
-        if (boundPlayer.damage(new VoodooDamageSource(VoodooDamageSource.VoodooDamageType.WATER, getStack(), this), 2.0F))
+        if (boundPlayer.damage(new VoodooDamageSource(VoodooDamageSource.VoodooDamageType.WATER, getStack(), this), 2.0F)) {
             this.getStack().damage(2, boundPlayer, (e) -> boundPlayer.sendToolBreakStatus(boundPlayer.getActiveHand()));
+        }
     }
 
     /**
