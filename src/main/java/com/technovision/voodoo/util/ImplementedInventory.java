@@ -24,6 +24,7 @@ import java.util.List;
  */
 @FunctionalInterface
 public interface ImplementedInventory extends SidedInventory {
+
     /**
      * Gets the item list of this inventory.
      * Must return the same instance every time it's called.

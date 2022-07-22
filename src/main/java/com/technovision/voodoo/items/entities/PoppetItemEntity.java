@@ -1,11 +1,11 @@
-package com.technovision.voodoo.blocks.entities;
+package com.technovision.voodoo.items.entities;
 
 import com.technovision.voodoo.VoodooDamageSource;
 import com.technovision.voodoo.util.BindingUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -19,14 +19,6 @@ public class PoppetItemEntity extends ItemEntity {
 
     private int tick = 0;
     private int lastFireTick = -20;
-
-    public PoppetItemEntity(World world) {
-        super(EntityType.ITEM, world);
-    }
-
-    public PoppetItemEntity(EntityType<? extends ItemEntity> entityType, World world) {
-        super(entityType, world);
-    }
 
     public PoppetItemEntity(World world, double x, double y, double z, ItemStack stack) {
         super(world, x, y, z, stack);
@@ -74,7 +66,7 @@ public class PoppetItemEntity extends ItemEntity {
         final PlayerEntity boundPlayer = BindingUtil.getBoundPlayer(this.getStack(), this.world);
         if (boundPlayer == null) return;
         if (boundPlayer.isInvulnerable()) return;
-        if (boundPlayer.canBreatheInWater()) return; // || MobEffectUtil.hasWaterBreathing(boundPlayer)
+        if (boundPlayer.canBreatheInWater() || boundPlayer.hasStatusEffect(StatusEffects.WATER_BREATHING)) return;
         this.decreaseAirSupply(boundPlayer);
         if (boundPlayer.getAir() > -40) return;
         boundPlayer.setAir(0);

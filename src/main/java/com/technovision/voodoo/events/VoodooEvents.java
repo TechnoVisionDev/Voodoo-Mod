@@ -2,8 +2,6 @@ package com.technovision.voodoo.events;
 
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.VoodooDamageSource;
-import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
-import com.technovision.voodoo.items.PoppetItem;
 import com.technovision.voodoo.util.PoppetUtil;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -16,12 +14,10 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +74,7 @@ public class VoodooEvents {
 
     /**
      * Event that fires every time a player receives damage on the server side.
+     *
      * @param event the event details.
      * @return true if event is canceled and player takes no damage, otherwise false.
      */
@@ -120,6 +117,7 @@ public class VoodooEvents {
 
     /**
      * Uses the reflector poppet to reflect damage back to attacker.
+     *
      * @param event the event details.
      * @return true if event should be canceled.
      */
@@ -138,6 +136,7 @@ public class VoodooEvents {
 
     /**
      * Get a list of all poppets that may apply to the given damage event.
+     *
      * @param event the event details.
      * @return a list of poppet types that apply to given damage event.
      */
@@ -166,6 +165,12 @@ public class VoodooEvents {
         return suitablePoppets;
     }
 
+    /**
+     * Perform an action from one of the protection poppets.
+     * This may include status effects, teleportation, etc.
+     *
+     * @param event the event details.
+     */
     private static void doSpecialActions(DamageReceivedEvent event) {
         final DamageSource damageSource = event.getSource();
         final ServerPlayerEntity player = event.getPlayer();
@@ -207,6 +212,12 @@ public class VoodooEvents {
         }
     }
 
+    /**
+     * Calculate the amount of durability to be removed from the poppet based on the incoming damage.
+     *
+     * @param event the event details.
+     * @return the number of durability to take away from poppet.
+     */
     private static int getDurabilityCost(DamageReceivedEvent event) {
         final DamageSource damageSource = event.getSource();
         if (damageSource instanceof VoodooDamageSource)
@@ -230,6 +241,7 @@ public class VoodooEvents {
 
     /**
      * Checks if a user has a harmful potion affect and seeks to use a poppet to remedy it.
+     *
      * @param player the player being inspected.
      */
     private static void checkPotionEffects(ServerPlayerEntity player) {
@@ -246,6 +258,7 @@ public class VoodooEvents {
 
     /**
      * Removes a wither status effect from a player.
+     *
      * @param player the player to remove the effect from.
      * @param potionEffect the instance of the wither status effect.
      */
@@ -258,6 +271,7 @@ public class VoodooEvents {
 
     /**
      * Removes a potion status effect from a player.
+     *
      * @param player the player to remove the effect from.
      * @param potionEffect the instance of the potion status effect.
      */
@@ -285,6 +299,7 @@ public class VoodooEvents {
 
     /**
      * Checks if a user is at half hunger and seeks to use a poppet to remedy.
+     *
      * @param player the player being inspected.
      */
     private static void checkFoodStatus(ServerPlayerEntity player) {
@@ -297,6 +312,7 @@ public class VoodooEvents {
 
     /**
      * Uses a poppet ability with a specified durability hit.
+     *
      * @param poppet the poppet being used.
      * @param durabilityCost the amount of durability to remove from poppet.
      * @return the durability remaining on the poppet.

@@ -4,7 +4,8 @@
   "package": "com.technovision.voodoo.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "PlayerEntityMixin"
   ],
   "client": [],
   "injectors": {

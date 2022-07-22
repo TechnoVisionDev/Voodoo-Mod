@@ -25,13 +25,8 @@ import java.util.stream.StreamSupport;
  */
 public class PoppetUtil {
 
-    private static final Map<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache;
-    private static final WeakHashMap<PoppetShelfBlockEntity, List<Poppet>> poppetCache;
-
-    static {
-        poppetShelvesCache = new HashMap<>();
-        poppetCache = new WeakHashMap<>();
-    }
+    private static final Map<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache = new HashMap<>();;
+    private static final WeakHashMap<PoppetShelfBlockEntity, List<Poppet>> poppetCache = new WeakHashMap<>();
 
     /**
      * Searches for a specific poppet that is bound to a player.
@@ -156,6 +151,12 @@ public class PoppetUtil {
         }
     }
 
+    /**
+     * Removes a poppet object from a shelf block entity.
+     *
+     * @param ownerUUID the UUID of the owner of the shelf block.
+     * @param poppetShelf the shelf block entity.
+     */
     public static void removePoppetShelf(UUID ownerUUID, PoppetShelfBlockEntity poppetShelf) {
         if (ownerUUID == null || poppetShelf.getWorld() == null || poppetShelf.getWorld().isClient()) return;
         final List<WeakReference<PoppetShelfBlockEntity>> weakShelves = poppetShelvesCache.get(ownerUUID);
@@ -166,6 +167,12 @@ public class PoppetUtil {
         }
     }
 
+    /**
+     * Adds a poppet object to a shelf block entity.
+     *
+     * @param ownerUUID the UUID of the owner of the shelf block.
+     * @param poppetShelf the shelf block entity.
+     */
     public static void addPoppetShelf(UUID ownerUUID, PoppetShelfBlockEntity poppetShelf) {
         if (ownerUUID == null || (poppetShelf.getWorld() != null && poppetShelf.getWorld().isClient())) return;
         removePoppetShelf(ownerUUID, poppetShelf);
@@ -174,6 +181,12 @@ public class PoppetUtil {
         weakShelves.add(new WeakReference<>(poppetShelf));
     }
 
+    /**
+     * Retrieves all poppet shelves using streams.
+     *
+     * @param server the current Minecraft server.
+     * @return a stream of PoppetShelfBlockEntity objects.
+     */
     private static Stream<PoppetShelfBlockEntity> getPoppetShelvesStream(MinecraftServer server) {
         return poppetShelvesCache.values().stream()
                 .flatMap(Collection::stream)
