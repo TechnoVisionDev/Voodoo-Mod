@@ -1,0 +1,40 @@
+{
+  "itemGroup.voodoo.voodoo_group": "Dark Magic",
+
+  "block.voodoo.poppet_shelf": "Stack o' dolls",
+  "item.voodoo.needle": "Poker o' blood",
+  "item.voodoo.taglock_kit": "Link yer victim",
+  "item.voodoo.blank_poppet": "Voodoo Doll",
+  "item.voodoo.voodoo_poppet": "Doll o' Dark Magic",
+  "item.voodoo.vampiric_poppet": "Blood Suck'n Doll",
+  "item.voodoo.reflector_poppet": "Doll o' The Shiny Sea",
+  "item.voodoo.voodoo_protection_poppet": "Magic-proof Doll",
+  "item.voodoo.death_protection_poppet": "Death Blockin' Doll",
+  "item.voodoo.fire_protection_poppet": "Flame Blockin' Doll",
+  "item.voodoo.water_protection_poppet": "Sea-faring Doll",
+  "item.voodoo.fall_protection_poppet": "Doll o' Extra Ropes",
+  "item.voodoo.explosion_protection_poppet": "Cannon-proof Doll",
+  "item.voodoo.projectile_protection_poppet": "Blunderbuss Bustin' Doll",
+  "item.voodoo.wither_protection_poppet": "Wither Battl'n Doll",
+  "item.voodoo.hunger_protection_poppet": "Doll o' Scurvy",
+  "item.voodoo.potion_protection_poppet": "Grog Guzzlin' Doll",
+  "item.voodoo.void_protection_poppet": "Doll o' The Briney Deep",
+
+  "text.voodoo.death": "%1$s was killed by voodoo magic stuff.",
+  "text.voodoo.taglock_kit.bound": "From: %1$s",
+  "text.voodoo.taglock_kit.not_bound": "Empty",
+  "text.voodoo.poppet.bound": "Follow'n: %1$s",
+  "text.voodoo.poppet.not_bound": "No Maties",
+  "text.voodoo.voodoo_protection.had": "%1$s had a Magic-proof Doll",
+  "text.voodoo.poppet.used_up": "Ye %1$s was used up",
+  "screen.voodoo.poppet_shelf": "Stack o' dolls (%1$s)",
+
+  "text.voodoo.poppet.disabled": "Plundered",
+  "text.voodoo.poppet.needle.disabled": "No Pokin'",
+  "text.voodoo.poppet.push.disabled": "No Shovin'",
+  "text.voodoo.poppet.fire.disabled": "No Burnin'",
+  "text.voodoo.poppet.drowning.disabled": "No walkin' the plank",
+
+  "sound.poppet.voodoo_protection.used": "Started Doll o' Dark Magic",
+  "sound.poppet.potion_protection.used": "Grog Guzzlin' Doll Guzzlin'"
+}
