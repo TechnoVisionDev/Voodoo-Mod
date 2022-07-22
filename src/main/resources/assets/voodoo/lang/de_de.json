@@ -1,0 +1,40 @@
+{
+  "itemGroup.voodoo.voodoo_group": "Voodoo",
+
+  "block.voodoo.poppet_shelf": "Puppenregal",
+  "item.voodoo.needle": "Nadel",
+  "item.voodoo.taglock_kit": "Taglock Kit",
+  "item.voodoo.blank_poppet": "Puppe",
+  "item.voodoo.voodoo_poppet": "Voodoo Puppe",
+  "item.voodoo.vampiric_poppet": "Vampirische Puppe",
+  "item.voodoo.reflector_poppet": "Reflektor Puppe",
+  "item.voodoo.voodoo_protection_poppet": "Voodoo Beschützer-Puppe",
+  "item.voodoo.death_protection_poppet": "Todes Beschützer-Puppe",
+  "item.voodoo.fire_protection_poppet": "Feuer Beschützer-Puppe",
+  "item.voodoo.water_protection_poppet": "Wasser Beschützer-Puppe",
+  "item.voodoo.fall_protection_poppet": "Fallschaden Beschützer-Puppe",
+  "item.voodoo.explosion_protection_poppet": "Explosions Beschützer-Puppe",
+  "item.voodoo.projectile_protection_poppet": "Projektil Beschützer-Puppe",
+  "item.voodoo.wither_protection_poppet": "Wither Beschützer-Puppe",
+  "item.voodoo.hunger_protection_poppet": "Hunger Beschützer-Puppe",
+  "item.voodoo.potion_protection_poppet": "Trank Beschützer-Puppe",
+  "item.voodoo.void_protection_poppet": "Void Beschützer-Puppe",
+
+  "text.voodoo.death": "%1$s werd gedood door voodoo magie.",
+  "text.voodoo.taglock_kit.bound": "Von: %1$s",
+  "text.voodoo.taglock_kit.not_bound": "Leer",
+  "text.voodoo.poppet.bound": "Gebunden an: %1$s",
+  "text.voodoo.poppet.not_bound": "Nicht gebunden",
+  "text.voodoo.voodoo_protection.had": "%1$s hatte eine Voodoo-Beschützer-Puppe",
+  "text.voodoo.poppet.used_up": "Deine %1$s wurde aufgebraucht",
+  "screen.voodoo.poppet_shelf": "Puppenregal (%1$s)",
+
+  "text.voodoo.poppet.disabled": "Deaktiviert",
+  "text.voodoo.poppet.needle.disabled": "Nadeln deaktiviert",
+  "text.voodoo.poppet.push.disabled": "Schubsen deaktiviert",
+  "text.voodoo.poppet.fire.disabled": "Brennen deaktiviert",
+  "text.voodoo.poppet.drowning.disabled": "Ertrinken deaktiviert",
+
+  "sound.poppet.voodoo_protection.used": "Voodoo Beschützer-Puppe wurde aktiviert",
+  "sound.poppet.potion_protection.used": "Trank Beschützer-Puppe wurde aktiviert"
+}

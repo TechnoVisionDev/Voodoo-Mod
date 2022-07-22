@@ -19,8 +19,8 @@
   "item.voodoo.hunger_protection_poppet": "Hunger Protection Poppet",
   "item.voodoo.potion_protection_poppet": "Potion Protection Poppet",
   "item.voodoo.void_protection_poppet": "Void Protection Poppet",
-  "itemGroup.voodoo_group": "Voodoo",
 
+  "text.voodoo.death": "%1$s was killed by voodoo magic.",
   "text.voodoo.taglock_kit.bound": "From: %1$s",
   "text.voodoo.taglock_kit.not_bound": "Empty",
   "text.voodoo.poppet.bound": "Bound to: %1$s",
