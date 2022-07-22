@@ -2,6 +2,8 @@ package com.technovision.voodoo.events;
 
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.VoodooDamageSource;
+import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
+import com.technovision.voodoo.items.PoppetItem;
 import com.technovision.voodoo.util.PoppetUtil;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -14,10 +16,12 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 

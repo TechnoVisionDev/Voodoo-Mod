@@ -7,6 +7,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
@@ -23,4 +24,11 @@ public class ServerPlayerEntityMixin {
         boolean cancelEvent = VoodooEvents.onDamageReceivedEvent(new DamageReceivedEvent(player, source, amount));
         if (cancelEvent) cir.setReturnValue(false);
     }
+
+    /**
+    @Inject(method = "setFireTicks", at = @At("HEAD"))
+    public void setFireTicks(int fireTicks, CallbackInfo ci) {
+
+    }
+    */
 }

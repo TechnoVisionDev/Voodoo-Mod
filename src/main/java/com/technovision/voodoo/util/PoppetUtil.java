@@ -25,7 +25,7 @@ import java.util.stream.StreamSupport;
  */
 public class PoppetUtil {
 
-    public static final Map<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache;
+    private static final Map<UUID, List<WeakReference<PoppetShelfBlockEntity>>> poppetShelvesCache;
     private static final WeakHashMap<PoppetShelfBlockEntity, List<Poppet>> poppetCache;
 
     static {
@@ -118,7 +118,7 @@ public class PoppetUtil {
                 continue;
             }
             List<Poppet> poppetList = poppetCache.get(poppetShelf);
-            if (poppetList == null) {
+            if (poppetList == null || poppetList.size() == 0) {
                 poppetList = poppetShelf
                         .getItems()
                         .stream()
@@ -139,8 +139,9 @@ public class PoppetUtil {
      * @param poppetShelf The poppet shelf
      */
     public static void invalidateShelfCache(PoppetShelfBlockEntity poppetShelf) {
-        if (poppetShelf != null)
+        if (poppetShelf != null) {
             poppetCache.remove(poppetShelf);
+        }
     }
 
     /**
@@ -150,8 +151,9 @@ public class PoppetUtil {
      * @param playerUUD The UUID of the owner of the player
      */
     public static void invalidateShelvesCache(UUID playerUUD) {
-        if (playerUUD != null)
+        if (playerUUD != null) {
             poppetShelvesCache.remove(playerUUD);
+        }
     }
 
     public static void removePoppetShelf(UUID ownerUUID, PoppetShelfBlockEntity poppetShelf) {
@@ -172,7 +174,7 @@ public class PoppetUtil {
         weakShelves.add(new WeakReference<>(poppetShelf));
     }
 
-    public static Stream<PoppetShelfBlockEntity> getPoppetShelvesStream(MinecraftServer server) {
+    private static Stream<PoppetShelfBlockEntity> getPoppetShelvesStream(MinecraftServer server) {
         return poppetShelvesCache.values().stream()
                 .flatMap(Collection::stream)
                 .map(WeakReference::get)
