@@ -37,13 +37,15 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
     private String ownerName;
     private boolean inventoryTouched;
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+    public int tick;
 
     public PoppetShelfBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.POPPET_SHELF_ENTITY, pos, state);
+        tick = 0;
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, PoppetShelfBlockEntity entity) {
-        if ((!world.isClient() && entity.inventoryTouched)) {
+        if (!world.isClient() && entity.inventoryTouched) {
             entity.markDirty();
             Collection<ServerPlayerEntity> viewers = PlayerLookup.tracking(entity);
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
@@ -54,8 +56,16 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
             entity.inventoryTouched = false;
             viewers.forEach(player -> ServerPlayNetworking.send(player, new Identifier(Voodoo.MOD_ID, "update"), buf));
         }
+        if (!world.isClient() && entity.tick % 20 == 0 && entity.isPlayerInRange(world, pos)) {
+            entity.inventoryTouched = true;
+            entity.tick = 0;
+        }
+        entity.tick++;
     }
 
+    private boolean isPlayerInRange(World world, BlockPos pos) {
+        return world.isPlayerInRange((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)16.0);
+    }
 
     public void inventoryTouched() {
         this.inventoryTouched = true;
