@@ -36,6 +36,6 @@
     "java": ">=17"
   },
   "suggests": {
-    "patchouli": ">=1.19-74-FABRIC"
+    "patchouli": ">=1.19-72-FABRIC"
   }
 }
