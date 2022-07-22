@@ -26,13 +26,10 @@ public class PoppetShelfRenderer implements BlockEntityRendererFactory<PoppetShe
                 if (!stack.isEmpty()) {
                     matrices.push();
                     double offset = Math.sin((entity.getWorld().getTime() + partialTicks) / 8) / 32;
-                    //noinspection IntegerDivisionInFloatingPointContext
                     matrices.translate((i % 3) / 5D + 0.3, 0.9 + offset, (i / 3) / 5D + 0.3);
                     matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(entity.getWorld().getTime() + tickDelta));
-
                     matrices.scale(0.4f, 0.4f, 0.4f);
                     MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
-
                     matrices.pop();
                 }
             }

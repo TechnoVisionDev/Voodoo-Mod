@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -31,21 +30,35 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ * Container entity for poppet shelf
+ *
+ * @author TechnoVision
+ */
 public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
     private UUID ownerUuid;
     private String ownerName;
     private boolean inventoryTouched;
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
-    public int tick;
+    public boolean startup;
 
     public PoppetShelfBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.POPPET_SHELF_ENTITY, pos, state);
-        tick = 0;
+        startup = true;
     }
 
+    /**
+     * Handles saving updated inventories and sending render packets to the client.
+     *
+     * @param world the world this block entity is in.
+     * @param pos the position of the block entity.
+     * @param state the blockstate of the block entity's block.
+     * @param entity the block entity itself.
+     */
     public static void tick(World world, BlockPos pos, BlockState state, PoppetShelfBlockEntity entity) {
-        if (!world.isClient() && entity.inventoryTouched) {
+        if (world.isClient()) return;
+        if (entity.inventoryTouched) {
             entity.markDirty();
             Collection<ServerPlayerEntity> viewers = PlayerLookup.tracking(entity);
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
@@ -56,31 +69,56 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
             entity.inventoryTouched = false;
             viewers.forEach(player -> ServerPlayNetworking.send(player, new Identifier(Voodoo.MOD_ID, "update"), buf));
         }
-        if (!world.isClient() && entity.tick % 20 == 0 && entity.isPlayerInRange(world, pos)) {
+        if (entity.startup && entity.isPlayerInRange(world, pos)) {
             entity.inventoryTouched = true;
-            entity.tick = 0;
+            entity.startup = false;
         }
-        entity.tick++;
     }
 
+    /**
+     * Checks if a given player is within 16 blocks of the shelf block entity.
+     *
+     * @param world the world this block entity is in.
+     * @param pos the position of the block entity.
+     * @return true if within 16 blocks, otherwise false.
+     */
     private boolean isPlayerInRange(World world, BlockPos pos) {
         return world.isPlayerInRange((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)16.0);
     }
 
+    /**
+     * Marks that the inventory has potentially been modified.
+     * Resets shelf cache, marks as dirty, and sends render packets.
+     */
     public void inventoryTouched() {
         this.inventoryTouched = true;
         PoppetUtil.invalidateShelfCache(PoppetShelfBlockEntity.this);
     }
 
+    /**
+     * Set the container inventory to a new list of items.
+     *
+     * @param list the list of items to set the inventory to.
+     */
     public void setInvStackList(DefaultedList<ItemStack> list) {
         this.inventory = list;
         this.inventoryTouched = true;
     }
 
+    /**
+     * Retrieves the UUID of the owner of this shelf.
+     *
+     * @return UUID of the shelf owner.
+     */
     public UUID getOwnerUuid() {
         return ownerUuid;
     }
 
+    /**
+     * Set the owner of this shelf by UUID.
+     *
+     * @param ownerUuid the UUID of the person to be set as owner.
+     */
     public void setOwnerUuid(UUID ownerUuid) {
         if (this.ownerUuid != ownerUuid) {
             PoppetUtil.removePoppetShelf(this.ownerUuid, this);
@@ -90,10 +128,18 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
         }
     }
 
+    /**
+     * Retrieves the name of the owner of this shelf.
+     *
+     * @return The name of the shelf owner in string form.
+     */
     public String getOwnerName() {
         return ownerName;
     }
 
+    /**
+     * Sets the owner of this shelf by name.
+     */
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
         this.markDirty();
@@ -153,6 +199,5 @@ public class PoppetShelfBlockEntity extends BlockEntity implements NamedScreenHa
         super.markRemoved();
         PoppetUtil.removePoppetShelf(this.ownerUuid, this);
     }
-
 
 }
