@@ -25,7 +25,7 @@
   "text.voodoo.taglock_kit.not_bound": "Empty",
   "text.voodoo.poppet.bound": "Bound to: %1$s",
   "text.voodoo.poppet.not_bound": "Not bound",
-  "text.voodoo.voodoo_protection.had": "%1$s had a Voodoo-Protection-Poppet",
+  "text.voodoo.voodoo_protection.had": "%1$s had a Voodoo Protection Poppet",
   "text.voodoo.poppet.used_up": "Your %1$s was used up",
   "screen.voodoo.poppet_shelf": "Poppet Shelf (%1$s)",
 

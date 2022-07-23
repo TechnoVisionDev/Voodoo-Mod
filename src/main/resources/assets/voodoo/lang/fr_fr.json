@@ -1,0 +1,40 @@
+{
+  "itemGroup.voodoo.voodoo_group": "Vaudou",
+
+  "block.voodoo.poppet_shelf": "Étagère de poupée",
+  "item.voodoo.needle": "Aiguille",
+  "item.voodoo.taglock_kit": "Kit de taglock",
+  "item.voodoo.blank_poppet": "Poupée",
+  "item.voodoo.voodoo_poppet": "Poupée de vaudou",
+  "item.voodoo.vampiric_poppet": "Poupée vampirique",
+  "item.voodoo.reflector_poppet": "Poupée réflecteur",
+  "item.voodoo.voodoo_protection_poppet": "Poupée de protection du vaudou",
+  "item.voodoo.death_protection_poppet": "Poupée de protection des dégâts mortels",
+  "item.voodoo.fire_protection_poppet": "Poupée de protection du feu",
+  "item.voodoo.water_protection_poppet": "Poupée de protection de l'eau",
+  "item.voodoo.fall_protection_poppet": "Poupée de protection des dégâts de chute",
+  "item.voodoo.explosion_protection_poppet": "Poupée de protection des explosions",
+  "item.voodoo.projectile_protection_poppet": "Poupée de protection des projectiles",
+  "item.voodoo.wither_protection_poppet": "Poupée de protection de wither",
+  "item.voodoo.hunger_protection_poppet": "Poupée de protection de faim",
+  "item.voodoo.potion_protection_poppet": "Poupée de protection de potion",
+  "item.voodoo.void_protection_poppet": "Poupée de protection du vide",
+
+  "text.voodoo.death": "%1$s a été tué par de la magique vaudou.",
+  "text.voodoo.taglock_kit.bound": "De: %1$s",
+  "text.voodoo.taglock_kit.not_bound": "Vide",
+  "text.voodoo.poppet.bound": "Lié à: %1$s",
+  "text.voodoo.poppet.not_bound": "Pas lié",
+  "text.voodoo.voodoo_protection.had": "%1$s avait une Poupée de protection du vaudou",
+  "text.voodoo.poppet.used_up": "Ta %1$s a été épuisé",
+  "screen.voodoo.poppet_shelf": "Étagère de poupée (%1$s)",
+
+  "text.voodoo.poppet.disabled": "Désactivé",
+  "text.voodoo.poppet.needle.disabled": "Piquage désactivé",
+  "text.voodoo.poppet.push.disabled": "Agitation désactivée",
+  "text.voodoo.poppet.fire.disabled": "Brûlage désactivé",
+  "text.voodoo.poppet.drowning.disabled": "Noyade désactivée",
+
+  "sound.poppet.voodoo_protection.used": "Poupée de protection du vaudou activée",
+  "sound.poppet.potion_protection.used": "Poupée de protection de potion activée"
+}
