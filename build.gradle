@@ -25,7 +25,7 @@ dependencies {
 
 	// Libraries
 	modImplementation "vazkii.patchouli:Patchouli:1.19-74-FABRIC"
-	modImplementation "com.ptsmods:devlogin:2.1"
+	modRuntimeOnly "com.ptsmods:devlogin:2.1"
 }
 
 processResources {
