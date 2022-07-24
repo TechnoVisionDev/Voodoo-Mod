@@ -3,7 +3,7 @@
 [![](https://cf.way2muchnoise.eu/full_voodoo-fabric_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric) [![](https://cf.way2muchnoise.eu/packs/voodoo-fabric.svg)](https://www.curseforge.com/minecraft/mc-mods/iron-chests-fabric) [![](https://cf.way2muchnoise.eu/versions/voodoo-fabric.svg)](https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric) [![](https://img.shields.io/badge/Discord-TechnoVision-738bd7.svg)](https://discord.gg/m5fjByfrKP)
 
 # Voodoo Poppets - Fabric Mod
-_This is a complete Fabric port of the original Voodoo Poppets Mod by HialusFX. Inspired by the legendary Witchery mod, it adds a wide variety of voodoo poppets into the game. If you want to make your life a bit easier with the protection poppets or annoy your friends (or enemies) with the powerful voodoo poppet, this mod is perfect for you!_
+_This is a Fabric port of the original Voodoo Poppets Mod by HialusFX. Inspired by the legendary Witchery mod, it adds a wide variety of voodoo poppets into the game. If you want to make your life a bit easier with the protection poppets or annoy your friends (or enemies) with the powerful voodoo poppet, this mod is perfect for you!_
 
 # Downloads
 
