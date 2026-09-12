@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "voodoo",
+  "version": "${version}",
+  "name": "Voodoo Poppets: Reborn",
+  "description": "Voodoo Poppets in Minecraft",
+  "authors": [
+    "TechnoVision"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric",
+    "sources": "https://github.com/TechnoVisionDev/Voodoo-Mod"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/voodoo/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.technovision.voodoo.Voodoo"
+    ],
+    "client": [
+      "com.technovision.voodoo.VoodooClient"
+    ]
+  },
+  "mixins": [
+    "voodoo.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "fabric-api": ">=0.160.0",
+    "minecraft": "~26.2",
+    "java": ">=25"
+  }
+}

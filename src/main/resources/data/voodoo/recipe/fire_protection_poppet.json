@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GFG",
+    "BPB",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:blank_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "G": "#c:ingots/gold",
+    "F": "minecraft:fire_charge",
+    "B": "minecraft:blaze_rod"
+  },
+  "result": {
+    "id": "voodoo:fire_protection_poppet"
+  }
+}

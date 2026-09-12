@@ -1,0 +1,25 @@
+{
+  "name": "About Poppets",
+  "icon": "voodoo:blank_poppet",
+  "category": "voodoo:poppets",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Poppets are the physical manifestation of voodoo magic. They channel magical energy and bend it to your will. To sustain the flow of energy they must be made of the right materials. Rabbit hide filled with the wool of a sheep seems to work best. Combine these with some eyes of coal and stitch them together with a needle and string to resemble your target."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:blank_poppet",
+      "text": "You have now created a normal poppet. And while it has no magical powers yet it can be combined with other items to give it specific powers and abilities."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "There are two main categories of poppets: Those that influence or harm others, like the voodoo poppet, and those that can protect you from harm. The latter will be called \"Protection Poppets\" in this book. $(br)There are protection poppets like the explosion protection poppet that simply protect you from taking damage from certain sources."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "And then there are special poppets like the death and void protection poppets that can prevent your early departure from this world."
+    }
+  ]
+}

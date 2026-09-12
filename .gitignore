@@ -31,3 +31,9 @@ bin/
 # fabric
 
 run/
+
+# NeoForge test and server runs
+run-gametest/
+run-server/
+run-neoforge/
+run-client-smoke/

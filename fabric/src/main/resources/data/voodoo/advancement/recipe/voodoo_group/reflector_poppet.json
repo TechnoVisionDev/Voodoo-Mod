@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "voodoo:reflector_poppet"
+    ]
+  },
+  "criteria": {
+    "has_blank_poppet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "voodoo:blank_poppet"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "voodoo:reflector_poppet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blank_poppet",
+      "has_the_recipe"
+    ]
+  ]
+}

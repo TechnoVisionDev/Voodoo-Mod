@@ -1,0 +1,17 @@
+{
+  "name": "Drowning Protection",
+  "icon": "voodoo:water_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Activates when you would take drowning damage. It restores your air to 300 and grants 20 seconds of Water Breathing. Each activation costs one of its five uses."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:water_protection_poppet",
+      "text": ""
+    }
+  ]
+}

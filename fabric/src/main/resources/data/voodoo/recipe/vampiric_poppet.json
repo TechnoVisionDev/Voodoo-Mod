@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GSG",
+    "CPW",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:voodoo_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "G": "minecraft:ghast_tear",
+    "C": "minecraft:crimson_fungus",
+    "W": "minecraft:warped_fungus",
+    "S": "minecraft:soul_lantern"
+  },
+  "result": {
+    "id": "voodoo:vampiric_poppet"
+  }
+}

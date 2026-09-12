@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SWS",
+    "FPF",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:blank_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "W": "minecraft:white_wool",
+    "F": "minecraft:feather",
+    "S": "minecraft:string"
+  },
+  "result": {
+    "id": "voodoo:fall_protection_poppet"
+  }
+}

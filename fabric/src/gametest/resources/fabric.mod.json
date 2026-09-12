@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "voodoo-test",
+  "version": "1.0.0",
+  "name": "Voodoo regression tests",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "com.technovision.voodoo.VoodooGameTests"
+    ],
+    "fabric-client-gametest": [
+      "com.technovision.voodoo.VoodooClientGameTest"
+    ]
+  }
+}

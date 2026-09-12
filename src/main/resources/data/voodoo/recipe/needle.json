@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "I": "#c:ingots/iron",
+    "B": "minecraft:iron_bars"
+  },
+  "result": {
+    "count": 4,
+    "id": "voodoo:needle"
+  }
+}

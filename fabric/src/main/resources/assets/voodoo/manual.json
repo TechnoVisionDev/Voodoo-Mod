@@ -1,0 +1,139 @@
+[
+  {
+    "title": "Introduction",
+    "sections": [
+      "Welcome to the Voodoo Manual. This book will teach you all you need to know about voodoo magic. \nTo learn more about the practice of creating voodoo poppets you can head over to the chapter about them and start with the Blank Poppet.",
+      "After you created a poppet you will want to bind them to a player. In Binding Poppets you can learn how to do this. \nFinally if your want to store you poppets in a safe place you want to use a Poppet Shelf."
+    ]
+  },
+  {
+    "title": "Binding Poppets",
+    "sections": [
+      "In order to bind poppets to a player you need to obtain a taglock of said player first. This can be done with the Taglock Kit. The Taglock Kit can be filled in three ways: \n• Right clicking on a player to obtain their taglock \n• Shift right clicking in the air to obtain your taglock \n• Right clicking a bed to obtain the taglock of the latest sleeper in this bed",
+      "After you obtained a taglock you can craft it together with an unbound poppet to bind the poppet to the owner of the taglock.",
+      "Craft together:\n• needle\n• string\n• glass bottle"
+    ]
+  },
+  {
+    "title": "Poppet Shelf",
+    "sections": [
+      "Having a lot of poppet takes up quite a lot of inventory space.\nThis is were the poppet shelf comes into play. It allows you to store your poppets in a safe place while still being able to take advantage of their effects.\nIn order for the poppet shelf to work the chunk it is in must be loaded. A chunk loader is recommended.",
+      "Only poppets bound to the placer of the poppet shelf will be usable. The poppet shelf also displays the poppets it contains on top of it.",
+      "Crafting grid:\nA C A\nN O N\nA C A\n\nC: green carpet\nO: obsidian\nA: amethyst shard\nN: red nether bricks"
+    ]
+  },
+  {
+    "title": "About Poppets",
+    "sections": [
+      "Poppets are the physical manifestation of voodoo magic. They channel magical energy and bend it to your will. To sustain the flow of energy they must be made of the right materials. Rabbit hide filled with the wool of a sheep seems to work best. Combine these with some eyes of coal and stitch them together with a needle and string to resemble your target.",
+      "You have now created a normal poppet. And while it has no magical powers yet it can be combined with other items to give it specific powers and abilities.",
+      "Crafting grid:\nE W E\nS W S\nR N R\n\nW: brown wool\nE: coal or charcoal\nS: string\nR: rabbit hide\nN: needle",
+      "There are two main categories of poppets: Those that influence or harm others, like the voodoo poppet, and those that can protect you from harm. The latter will be called \"Protection Poppets\" in this book. \nThere are protection poppets like the explosion protection poppet that simply protect you from taking damage from certain sources.",
+      "And then there are special poppets like the death and void protection poppets that can prevent your early departure from this world."
+    ]
+  },
+  {
+    "title": "Death Protection",
+    "sections": [
+      "Even if you have a lot of protection poppet they are sometimes simply not enough. They don't protect against every damage source and can also break at the most inconvenient times. \nThe Death Protection Poppet is your ultimate life anchor. It can save you from all forms of death, except falling into the void. ",
+      "It takes the powers of the Totem of Undying and increases them with the feet of a rabbit and two gold apples to accomplish this feat.",
+      "Crafting grid:\nF T F\nG P G\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nT: totem of undying\nG: golden apple\nF: rabbit foot"
+    ]
+  },
+  {
+    "title": "Drowning Protection",
+    "sections": [
+      "If you love to go diving in the ocean the Water Protection Poppet is ideal for you. \nWhenever your air volume falls below a certain point it will refresh it and give you the water breathing effect for a short while.",
+      "Crafting grid:\nS F S\nK P K\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nF: salmon bucket or cod bucket or pufferfish bucket or tropical fish bucket\nS: sea pickle\nK: kelp"
+    ]
+  },
+  {
+    "title": "Explosion Protection",
+    "sections": [
+      "Creepers, TNT or fireballs: The Explosion Protection Poppet doesn't care. It will protect you against any explosions regardless of the source. \nIt can even protect you from the strongest explosion imaginable, like those pesky nukes you keep hearing about. (Radiation prevention not included)",
+      "Crafting grid:\nO I O\nW P W\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nW: water bucket\nI: iron block\nO: obsidian"
+    ]
+  },
+  {
+    "title": "Fall Protection",
+    "sections": [
+      "The premise of the Falldamage Protection Poppet is quite simple. It protects you from any falldamage you would normally take. \nThe higher the fall the less the durability cost will increase. Also short falls might cost no durability at all.",
+      "Crafting grid:\nS W S\nF P F\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nW: white wool\nF: feather\nS: string"
+    ]
+  },
+  {
+    "title": "Fire Protection",
+    "sections": [
+      "Lava, blazes, fireballs and other forms of fire have the potential to kill you within seconds. To protect you from this you can create a Fire Protection Poppet. If you are set on fire by any source it will absorb the damage and grant you fire resistance for a short amount of time.",
+      "Crafting grid:\nG F G\nB P B\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nG: gold ingots\nF: fire charge\nB: blaze rod"
+    ]
+  },
+  {
+    "title": "Hunger Protection",
+    "sections": [
+      "In the middle of a fight it can be difficult take the time to eat some food. Or you run out of food while exploring a large cave. \nIn both situations a Hunger Protection Poppet will come in handy. Once your food level falls below a certain point it will automatically fill your belly for you.",
+      "Crafting grid:\nC K C\nC P C\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nC: cookie\nK: cake"
+    ]
+  },
+  {
+    "title": "Potion Protection",
+    "sections": [
+      "The Potion Protection Poppet protects you from all negative potion effects, except the wither effect. \nIf you are subjected to any negative effect the poppet will try to fully negate it. Each level of the effect will require one durability point. \nIf there are not enough durability points on all your Potion Protection Poppets left it will only reduce the level accordingly.",
+      "Crafting grid:\nG C G\nM P H\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nM: milk bucket\nG: glistering melon slice\nC: golden carrot\nH: golden apple"
+    ]
+  },
+  {
+    "title": "Projectile Protection",
+    "sections": [
+      "Whether it is an arrow, a snowball or any other kind of projectile: The Projectile Protection Poppet will defend you against them. \nWhile damaging projectiles like arrows will damage the poppet in the process, projectiles like snowballs or eggs will do no such thing.",
+      "Crafting grid:\nT H T\nS P S\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nH: honey block or slime block\nS: shield\nT: target"
+    ]
+  },
+  {
+    "title": "Reflector Poppet",
+    "sections": [
+      "There are a lot of protection poppets you can choose from, but none that really helps against general PvE or PvP combat. \nThis is solved by the Reflector Poppet. It reflects any damage that is inflicted to the bound player by another player or entity back to the attacker.",
+      "Crafting grid:\nF E F\nC P C\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nF: pufferfish or pufferfish bucket\nE: end crystal\nC: cactus"
+    ]
+  },
+  {
+    "title": "Vampiric Poppet",
+    "sections": [
+      "While damaging other players with needles can be fun it does not give you any direct benefit. What if the damage you inflict would be added to your own health? \nBy combining the Voodoo Poppet with a soul lantern, ghast tears and nether mushrooms you can make it do exactly that. \nThe Vampiric Poppet is used by holding down the right mouse button.",
+      "It won't steal health if the health of the target is below a certain amount or your health is full. \nImportant\nIf the target has a Voodoo Protection Poppet bound to them it will destroy this poppet when activated.",
+      "Crafting grid:\nG S G\nC P W\nR N R\n\nP: voodoo poppet\nN: needle\nR: rabbit hide\nG: ghast tear\nC: crimson fungus\nW: warped fungus\nS: soul lantern"
+    ]
+  },
+  {
+    "title": "Void Protection",
+    "sections": [
+      "Falling into the void is one of the most frustrating ways to die. No way to save yourself and no way to get your items back. \nThe Void Protection Poppet can prevent you from this fate. When you fell into the void and would normally die it will activate. It will bring you to your bed or if you have none to the world spawn.",
+      "This power comes at a cost however. The poppet requires two enderpearls, some crying obsidian and phantom membranes to hold it all together.",
+      "Crafting grid:\nE O E\nM P M\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nE: ender pearl\nO: crying obsidian\nM: phantom membrane"
+    ]
+  },
+  {
+    "title": "Voodoo Poppet",
+    "sections": [
+      "The Voodoo Poppet is probably the most interesting poppet in this book. It allows its creator to influence another player in multiple different ways. \nIn order for this to work you will need to combine a normal poppet with leads, spider eyes and an enderpearl. If done correctly this will make it possible to create a strong binding to another player.",
+      "Once a binding is established this will make it possible to inflict harm on the bound player and even to fling them around.",
+      "Crafting grid:\nS E S\nL P L\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nE: ender pearl\nS: spider eye\nL: lead",
+      "You can use the Voodoo Poppet in 4 different ways: \n• You can sting needles into the poppet. This will inflict minor damage to the target. \n• You can push the target into any direction you want. Even from a large distance. \n• You can throw the poppet underwater. This will cause the target to slowly drown. \n• You can throw the poppet into fire. While the poppet will slowly burn away it will cause significant harm to the target.",
+      "You can use needles by holding the poppet in you main hand, a needle in you offhand and then holding and after a few seconds releasing the right mouse button. \nIf you do the same without a needle in you offhand you will instead push the target around. \nImportant\nIf the target has a Voodoo Protection Poppet bound to them it will destroy this poppet when activated."
+    ]
+  },
+  {
+    "title": "Voodoo Protection",
+    "sections": [
+      "If you've ever fallen victim to a Voodoo or Vampiric Poppet you know the feeling of helplessness that comes with it. It feels like you can't do anything against the invisible attack. \nThe Voodoo Protection Poppet can prevent such attacks. If it detects a voodoo based attack it will immediately destroy itself and the attacking poppet.",
+      "Crafting grid:\nM E M\nT P T\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nM: phantom membrane\nE: ender pearl\nT: tnt"
+    ]
+  },
+  {
+    "title": "Wither Protection",
+    "sections": [
+      "The Wither Protection Poppet works like the Potion Protection Poppet but for the wither effect. However it will only ever use one durability point, no matter the level of the wither effect.",
+      "Crafting grid:\nC B C\nM P H\nR N R\n\nP: blank poppet\nN: needle\nR: rabbit hide\nM: milk bucket\nC: coal or charcoal\nB: bone block\nH: golden apple"
+    ]
+  }
+]

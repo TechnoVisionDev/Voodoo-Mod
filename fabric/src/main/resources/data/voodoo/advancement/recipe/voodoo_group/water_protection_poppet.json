@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "voodoo:water_protection_poppet"
+    ]
+  },
+  "criteria": {
+    "has_blank_poppet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "voodoo:blank_poppet"
+            ]
+          }
+        ]
+      }
+    },
+    "entered_water": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:water"
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "voodoo:water_protection_poppet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blank_poppet",
+      "entered_water",
+      "has_the_recipe"
+    ]
+  ]
+}

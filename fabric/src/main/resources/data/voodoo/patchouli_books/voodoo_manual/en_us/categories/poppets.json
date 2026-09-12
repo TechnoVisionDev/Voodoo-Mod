@@ -1,0 +1,6 @@
+{
+  "name": "Poppets",
+  "description": "Poppets are the heart of this mod. They come in two variants: Protection poppets and poppets to influence other players. $(br)Read the $(l:poppets/blank_poppet)About Poppets$(/l) section to get started.",
+  "icon": "voodoo:blank_poppet",
+  "sortnum": 2
+}

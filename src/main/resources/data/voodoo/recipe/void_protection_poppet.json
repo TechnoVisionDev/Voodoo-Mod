@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EOE",
+    "MPM",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:blank_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "E": "minecraft:ender_pearl",
+    "O": "minecraft:crying_obsidian",
+    "M": "minecraft:phantom_membrane"
+  },
+  "result": {
+    "id": "voodoo:void_protection_poppet"
+  }
+}
