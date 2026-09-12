@@ -1,0 +1,54 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/tnt_side",
+      "sprite": "voodoo:item/vanilla/block/tnt_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/tnt_top",
+      "sprite": "voodoo:item/vanilla/block/tnt_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/tnt_bottom",
+      "sprite": "voodoo:item/vanilla/block/tnt_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:misc/underwater",
+      "sprite": "voodoo:item/vanilla/misc/underwater"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:entity/equipment/humanoid/iron",
+      "sprite": "voodoo:item/vanilla/entity/equipment/humanoid/iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/glass",
+      "sprite": "voodoo:item/vanilla/block/glass"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/brown_terracotta",
+      "sprite": "voodoo:item/vanilla/block/brown_terracotta"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/iron_block",
+      "sprite": "voodoo:item/vanilla/block/iron_block"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/water_still",
+      "sprite": "voodoo:item/vanilla/block/water_still"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:block/campfire_fire",
+      "sprite": "voodoo:item/vanilla/block/campfire_fire"
+    }
+  ]
+}

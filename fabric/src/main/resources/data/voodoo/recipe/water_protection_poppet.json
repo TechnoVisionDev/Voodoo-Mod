@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SFS",
+    "KPK",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:blank_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "F": [
+      "minecraft:salmon_bucket",
+      "minecraft:cod_bucket",
+      "minecraft:pufferfish_bucket",
+      "minecraft:tropical_fish_bucket"
+    ],
+    "S": "minecraft:sea_pickle",
+    "K": "minecraft:kelp"
+  },
+  "result": {
+    "id": "voodoo:water_protection_poppet"
+  }
+}

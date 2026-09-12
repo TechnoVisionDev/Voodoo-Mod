@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": { 
+		"layer0": "voodoo:item/voodoo_manual"
+	}
+}

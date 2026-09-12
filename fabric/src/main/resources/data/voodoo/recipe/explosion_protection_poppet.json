@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OIO",
+    "WPW",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:blank_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "W": "minecraft:water_bucket",
+    "I": "minecraft:iron_block",
+    "O": "minecraft:obsidian"
+  },
+  "result": {
+    "id": "voodoo:explosion_protection_poppet"
+  }
+}

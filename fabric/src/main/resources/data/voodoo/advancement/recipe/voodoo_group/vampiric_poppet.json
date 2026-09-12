@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "voodoo:vampiric_poppet"
+    ]
+  },
+  "criteria": {
+    "has_voodoo_poppet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "voodoo:voodoo_poppet"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "voodoo:vampiric_poppet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_voodoo_poppet",
+      "has_the_recipe"
+    ]
+  ]
+}

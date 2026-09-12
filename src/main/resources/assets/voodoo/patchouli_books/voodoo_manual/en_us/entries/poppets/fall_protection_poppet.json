@@ -1,0 +1,18 @@
+{
+  "name": "Fall Protection",
+  "icon": "voodoo:fall_protection_poppet",
+  "category": "voodoo:poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Absorbs fall damage using a pool of 30 durability. Every damaging fall costs at least one point; the cost grows more slowly for large falls. If your poppets run out mid-hit, only the remaining share of damage gets through."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Fall Protection Poppet",
+      "recipe": "voodoo:fall_protection_poppet",
+      "text": ""
+    }
+  ]
+}

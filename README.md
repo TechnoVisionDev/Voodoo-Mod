@@ -1,37 +1,55 @@
-![lol](https://i.imgur.com/47CSYci.png)
+# Voodoo Poppets: Reborn — NeoForge 26.1.2
 
-[![](https://cf.way2muchnoise.eu/full_voodoo-fabric_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric) [![](https://cf.way2muchnoise.eu/packs/voodoo-fabric.svg)](https://www.curseforge.com/minecraft/mc-mods/iron-chests-fabric) [![](https://cf.way2muchnoise.eu/versions/voodoo-fabric.svg)](https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric) [![](https://img.shields.io/badge/Discord-TechnoVision-738bd7.svg)](https://discord.gg/m5fjByfrKP)
+A native NeoForge port of the Voodoo Poppets mod, preserving its fifteen poppets, recipes, taglock bindings, shelf storage and effects. Based on the Fabric version by TechnoVision and the original mod by HialusFX.
 
-# Voodoo Poppets - Fabric Mod
-_This is a Fabric port of the original Voodoo Poppets Mod by HialusFX. Inspired by the legendary Witchery mod, it adds a wide variety of voodoo poppets into the game. If you want to make your life a bit easier with the protection poppets or annoy your friends (or enemies) with the powerful voodoo poppet, this mod is perfect for you!_
+## Project layout
 
-# Downloads
+- The root project (`src/`, `build.gradle`) is the primary **NeoForge 26.1.2** source.
+- `fabric/` is the standalone **Fabric 26.2** project, restored from the pre-port source. It includes its own source, Gradle wrapper, build settings and tests.
+- Both versions display **Voodoo Poppets: Reborn** and retain the internal `voodoo` identifier.
 
-*Remember to always backup your worlds before adding or updating mods!*
+Build NeoForge from the root with `./gradlew build`. Build Fabric with `./gradlew -p fabric build`; its output goes to `fabric/build/libs/`.
 
-### Recommended Releases
+## Install
 
-The latest stable releases can always be found on either [CurseForge](https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric) or [Modrinth](https://modrinth.com/mod/voodoo-fabric).<br/>
-The top file in the list is the latest recommended release!
+Use Minecraft **26.1.2**, **NeoForge 26.1.2.107 or a newer 26.1.2 build**, and **Java 25**. Put both files in the client and server `mods` folders:
 
-[![](https://cf.way2muchnoise.eu/versions/voodoo-fabric.svg)](https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric)
+- `voodoo-poppets-reborn-1.0.2+neoforge-26.1.2.jar`
+- `patchouli-neoforge-26.1-94.jar`
 
-### Development Builds
+The build puts the main mod in `build/libs/` and the Patchouli dependency in `build/libs/dependencies/`. Patchouli is a separate required mod; the guidebook content is included in Voodoo Poppets: Reborn.
 
-If you are looking for the latest bleeding edge build, you can find unstable releases [here](https://github.com/TechnoVisionDev/Voodoo-Mod/releases).</br>
-Use these builds with caution, and please do not put these in modpacks. They may contain major bugs!
+## Features
 
-# Issues and Suggestions
-To report issue, add a translation, or make a feature suggestion, please open a new issue in the `Issues` tab. This will require that you create a free GitHub account. **Please always include the version of the Voodoo Poppets Mod that you are using!**
+- Blank, voodoo, vampiric, reflector, voodoo protection, death protection, fire protection, water protection, fall protection, explosion protection, projectile protection, wither protection, hunger protection, potion protection, and void protection poppets.
+- Taglocks collected from yourself, another player, or a bed associated with an online player. Craft a filled taglock with an unbound, non-blank poppet to bind it.
+- Needle attacks, remote pushing, dropped-poppet fire and drowning, and vampiric health transfer.
+- Protection in the bound player's inventory or an owned, loaded poppet shelf. Durability, partial protection, reflection safeguards and effects retain the source implementation's behavior.
+- Nine-slot shelves with persistent ownership, hopper filtering, inventory synchronization and floating poppet displays.
+- All original item models, animations, sounds, translations, recipes, advancements and damage types.
 
-# Screenshots
-<img src="https://i.imgur.com/nSpofnO.png" width="70%" height="70%" />
+The internal mod ID remains `voodoo`, preserving registry and recipe identifiers. This does not make Minecraft 26.2 worlds safe to downgrade to 26.1.2.
 
-# Credits
+## Patchouli guidebook
 
-* TechnoVision - Developer of the Fabric version
-* HialusFX - Developer of the Forge version
+Craft the **Voodoo Manual** with a book, needle, string and rabbit hide in any crafting arrangement. Use it to open the Patchouli guide. The book has two categories and eighteen entries covering binding, shelves, all fifteen poppet types, crafting recipes, durability and effects.
 
-# License
+## Build and verify
 
-The Voodoo Poppets Mod is licensed under the LGPL-3.0 license. Full license is in **LICENSE.md**.
+```sh
+./gradlew build
+./gradlew runGameTestServer
+./gradlew runClientSmoke
+```
+
+Use `gradlew.bat` on Windows. The client smoke test needs a graphical environment; it creates its own fresh world, checks shelf synchronization and the shelf screen, opens the actual manual item, validates every guide entry, saves screenshots under `run-client-smoke/screenshots/`, and exits. Test classes are excluded from the release JAR.
+
+Normal development runs are `./gradlew runClient` and `./gradlew runServer`.
+
+## Credits and license
+
+- TechnoVision: Fabric version.
+- HialusFX: original Voodoo Poppets mod and artwork.
+- Vazkii and Violet Moon: [Patchouli](https://github.com/VazkiiMods/Patchouli).
+
+This mod is licensed under LGPL-3.0; see [LICENSE](LICENSE). Patchouli retains its own license.

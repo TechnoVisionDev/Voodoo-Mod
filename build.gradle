@@ -1,34 +1,99 @@
 plugins {
-    id 'net.fabricmc.fabric-loom' version '1.17.20'
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.146'
     id 'maven-publish'
 }
 version = project.mod_version
 group = project.maven_group
 base { archivesName = project.archives_base_name }
-repositories { mavenCentral() }
-dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-}
-processResources {
-    inputs.property 'version', project.version
-    filesMatching('fabric.mod.json') { expand 'version': project.version }
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.blamejared.com' }
 }
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(25)
     withSourcesJar()
 }
-tasks.withType(JavaCompile).configureEach { options.release = 25 }
+sourceSets {
+    gametest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations {
+    gametestImplementation.extendsFrom implementation
+    gametestRuntimeOnly.extendsFrom runtimeOnly
+}
+neoForge {
+    version = project.neo_version
+    addModdingDependenciesTo sourceSets.gametest
+    runs {
+        client { client(); gameDirectory = file('run-neoforge') }
+        clientSmoke {
+            client()
+            sourceSet = sourceSets.gametest
+            gameDirectory = file('run-client-smoke')
+            systemProperty 'voodoo.clientSmoke', 'true'
+        }
+        server { server(); gameDirectory = file('run-server'); programArgument '--nogui' }
+        gameTestServer {
+            type = 'gameTestServer'
+            sourceSet = sourceSets.gametest
+            gameDirectory = file('run-gametest')
+        }
+    }
+    mods {
+        voodoo { sourceSet sourceSets.main }
+        voodoo_test { sourceSet sourceSets.gametest }
+    }
+}
+dependencies {
+    implementation "vazkii.patchouli:patchouli-neoforge:${project.patchouli_version}"
+}
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') { expand 'version': project.version }
+}
+tasks.withType(JavaCompile).configureEach {
+    options.release = 25
+    options.encoding = 'UTF-8'
+}
 jar { from('LICENSE') { rename { "${it}_${project.base.archivesName.get()}" } } }
 publishing { publications { mavenJava(MavenPublication) { from components.java } } }
 
-fabricApi {
-    configureTests {
-        createSourceSet = true
-        modId = 'voodoo-test'
-        enableGameTests = true
-        enableClientGameTests = true
-        eula = true
+// Asset downloads can use the same JDK as Minecraft and compilation.
+tasks.withType(net.neoforged.nfrtgradle.NeoFormRuntimeTask).configureEach {
+    javaExecutable = javaToolchains.launcherFor(java.toolchain).map { it.executablePath.asFile.absolutePath }
+}
+
+// Keep the opt-in test mod out of normal client/server sessions.
+neoForge.runs.configureEach {
+    loadedMods = name in ['gameTestServer', 'clientSmoke']
+        ? [neoForge.mods.voodoo, neoForge.mods.voodoo_test]
+        : [neoForge.mods.voodoo]
+}
+
+// First-launch settings apply only to the disposable smoke-test profile.
+tasks.register('prepareClientSmokeProfile') {
+    doLast {
+        def profile = file('run-client-smoke')
+        profile.mkdirs()
+        new File(profile, 'options.txt').text = 'onboardAccessibility:false\ntutorialStep:none\nrenderDistance:4\nguiScale:2\npauseOnLostFocus:false\n'
+        ['smoke-test-passed.txt', 'smoke-test-failed.txt'].each { new File(profile, it).delete() }
     }
 }
+tasks.named('runClientSmoke') {
+    dependsOn 'prepareClientSmokeProfile'
+    doLast {
+        if (!file('run-client-smoke/smoke-test-passed.txt').isFile()
+            || file('run-client-smoke/smoke-test-failed.txt').exists()) {
+            throw new GradleException('Client smoke test failed; see run-client-smoke and the client log.')
+        }
+    }
+}
+
+tasks.register('copyRuntimeMods', Copy) {
+    from(configurations.runtimeClasspath) { include 'patchouli-neoforge-*.jar' }
+    into layout.buildDirectory.dir('libs/dependencies')
+}
+tasks.named('build') { finalizedBy 'copyRuntimeMods' }

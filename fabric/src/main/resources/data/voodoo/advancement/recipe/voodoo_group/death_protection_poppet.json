@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "voodoo:death_protection_poppet"
+    ]
+  },
+  "criteria": {
+    "has_blank_poppet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "voodoo:blank_poppet"
+            ]
+          }
+        ]
+      }
+    },
+    "has_totem_of_undying": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:totem_of_undying"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "voodoo:death_protection_poppet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blank_poppet",
+      "has_totem_of_undying",
+      "has_the_recipe"
+    ]
+  ]
+}

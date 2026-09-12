@@ -1,0 +1,11 @@
+license="LGPL-3.0"
+[[mods]]
+modId="voodoo_test"
+version="1.0.0"
+displayName="Voodoo Poppets: Reborn Game Tests"
+[[dependencies.voodoo_test]]
+modId="voodoo"
+type="required"
+versionRange="[1,)"
+ordering="AFTER"
+side="BOTH"

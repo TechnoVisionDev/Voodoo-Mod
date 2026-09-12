@@ -3,9 +3,9 @@ package com.technovision.voodoo.events;
 import com.technovision.voodoo.Poppet;
 import com.technovision.voodoo.VoodooDamageSource;
 import com.technovision.voodoo.util.PoppetUtil;
-import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.damagesource.DamageSource;
@@ -47,40 +47,36 @@ public class VoodooEvents {
      * Event that runs every time the server ticks. There are 20 ticks per second.
      * Checks player food and potion status and applies poppets as needed.
      */
-    public static void onServerTickEvent() {
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> { PoppetUtil.clear(); tickCount = 0; });
-        ServerTickEvents.END_SERVER_TICK.register((server) -> {
-            tickCount = (tickCount + 1) % 100;
-            for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-                checkPotionEffects(player);
-                if (tickCount % 100 == 0) {
-                    checkFoodStatus(player);
-                }
-            }
-        });
+    public static void onServerStopped(ServerStoppedEvent event) {
+        PoppetUtil.clear();
+        tickCount = 0;
+    }
+
+    public static void onServerTick(ServerTickEvent.Post event) {
+        tickCount = (tickCount + 1) % 100;
+        for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+            checkPotionEffects(player);
+            if (tickCount == 0) checkFoodStatus(player);
+        }
     }
 
     /**
      * Event that runs every time a player dies.
      * Checks for a death protection poppet to save the player.
      */
-    public static void onPlayerDeathEvent() {
-        ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
-            if (!(entity instanceof ServerPlayer player)) return true;
-            if (damageSource.is(DamageTypes.FELL_OUT_OF_WORLD)) return true;
-            Poppet poppet = PoppetUtil.getPlayerPoppet(player, DEATH_PROTECTION);
-            if (poppet != null) {
-                poppet.use();
-                player.setHealth(player.getMaxHealth() / 2);
-                player.removeAllEffects();
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 45 * 20, 1));
-                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 5 * 20, 1));
-                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40 * 20, 0));
-                player.level().broadcastEntityEvent(player, (byte) 35);
-                return false;
-            }
-            return true;
-        });
+    public static void onLivingDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
+        Poppet poppet = PoppetUtil.getPlayerPoppet(player, DEATH_PROTECTION);
+        if (poppet == null) return;
+        poppet.use();
+        player.setHealth(player.getMaxHealth() / 2);
+        player.removeAllEffects();
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 45 * 20, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 5 * 20, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40 * 20, 0));
+        player.level().broadcastEntityEvent(player, (byte) 35);
+        event.setCanceled(true);
     }
 
     /**

@@ -1,0 +1,18 @@
+{
+  "name": "Binding Poppets",
+  "icon": "voodoo:taglock_kit",
+  "category": "voodoo:basics",
+  "read_by_default": true,
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "First obtain a filled Taglock Kit:$(li)Use an empty kit on a player.$(li)Sneak-use it in the air to bind it to yourself.$(li)Use it on a bed to bind an online player whose respawn point is that bed.$(br2)Craft the filled kit with an unbound, non-blank poppet. Existing bindings cannot be overwritten."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "voodoo:taglock_kit",
+      "text": "After you obtained a taglock you can craft it together with an unbound poppet to bind the poppet to the owner of the taglock."
+    }
+  ]
+}
