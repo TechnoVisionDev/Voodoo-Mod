@@ -1,42 +1,15 @@
 package com.technovision.voodoo.screens;
-
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.technovision.voodoo.Voodoo;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-
-public class PoppetShelfScreen extends HandledScreen<PoppetShelfScreenHandler> {
-
-    private static final Identifier TEXTURE = new Identifier(Voodoo.MOD_ID, "textures/gui/poppet_shelf.png");
-
-    public PoppetShelfScreen(PoppetShelfScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, inventory, title);
-    }
-
-    @Override
-    protected void init() {
-        super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
-    }
-
-    @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-    }
-
-    @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+public class PoppetShelfScreen extends AbstractContainerScreen<PoppetShelfScreenHandler> {
+    public PoppetShelfScreen(PoppetShelfScreenHandler menu, Inventory inventory, Component title) { super(menu, inventory, title); }
+    @Override protected void init() { super.init(); titleLabelX = (imageWidth - font.width(title)) / 2; }
+    @Override public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractBackground(graphics, mouseX, mouseY, delta);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, Voodoo.id("textures/gui/poppet_shelf.png"), leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
     }
 }

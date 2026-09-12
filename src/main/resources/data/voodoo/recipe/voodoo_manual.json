@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "voodoo:needle",
+    "minecraft:string",
+    "minecraft:rabbit_hide",
+    "minecraft:book"
+  ],
+  "result": {
+    "id": "voodoo:voodoo_manual",
+    "count": 1
+  }
+}

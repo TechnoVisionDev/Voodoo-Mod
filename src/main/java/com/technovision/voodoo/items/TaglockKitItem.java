@@ -1,116 +1,42 @@
 package com.technovision.voodoo.items;
-
-import com.technovision.voodoo.Voodoo;
-import com.technovision.voodoo.registry.ModItems;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.enums.BedPart;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Comparator;
-import java.util.List;
-
-import static com.technovision.voodoo.util.BindingUtil.*;
-
-/**
- * Taglock item that can be used to collect player blood samples.
- *
- * @author TechnoVision
- */
+import com.technovision.voodoo.util.BindingUtil;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import java.util.function.Consumer;
 public class TaglockKitItem extends Item {
-
-    public TaglockKitItem() {
-        super(new FabricItemSettings().group(Voodoo.ITEM_GROUP).maxCount(8));
+    public TaglockKitItem(Properties properties) { super(properties); }
+    @Override public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (!player.isShiftKeyDown() || BindingUtil.isBound(stack)) return InteractionResult.PASS;
+        if (!level.isClientSide()) BindingUtil.bind(stack, player);
+        return InteractionResult.SUCCESS;
     }
-
-    /**
-     * Binds the taglock to the player holding it.
-     */
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!user.getWorld().isClient()) {
-            ItemStack stack = user.getStackInHand(hand);
-            if (isBound(stack)) return new TypedActionResult<>(ActionResult.PASS, stack);
-            if (user.isSneaking()) {
-                if (!stack.hasNbt()) {
-                    stack.setNbt(new NbtCompound());
-                }
-                if (!isBound(stack)) {
-                    bind(stack, user);
-                    return new TypedActionResult<>(ActionResult.SUCCESS, stack);
-                }
-            }
-        }
-        return super.use(world, user, hand);
+    @Override public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
+        if (!(entity instanceof Player target) || BindingUtil.isBound(stack)) return InteractionResult.PASS;
+        if (!user.level().isClientSide()) BindingUtil.bind(stack, target);
+        return InteractionResult.SUCCESS;
     }
-
-    /**
-     * Binds the taglock to the person who owns the bed clicked on.
-     */
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        BlockPos pos = context.getBlockPos();
-        BlockState state = world.getBlockState(pos);
-        PlayerEntity user = context.getPlayer();
-        if (!world.isClient() && user != null && user.isSneaking() && state.getBlock() instanceof BedBlock) {
-            MinecraftServer server = world.getServer();
-            if (state.get(BedBlock.PART) != BedPart.HEAD) {
-                pos = pos.offset(state.get(BedBlock.FACING));
-            }
-
-            BlockPos finalPos = pos;
-            server.getPlayerManager().getPlayerList().stream()
-                    .sorted(Comparator.comparing(ServerPlayerEntity::getSleepTimer))
-                    .filter(p -> finalPos.equals(p.getSpawnPointPosition()))
-                    .findFirst()
-                    .ifPresent(serverPlayerEntity -> bind(context.getStack(), serverPlayerEntity));
-            return ActionResult.SUCCESS;
-        }
-        return super.useOnBlock(context);
+    @Override public InteractionResult useOn(UseOnContext context) {
+        var level = context.getLevel(); var pos = context.getClickedPos(); var state = level.getBlockState(pos);
+        if (!(state.getBlock() instanceof BedBlock) || BindingUtil.isBound(context.getItemInHand())) return InteractionResult.PASS;
+        if (state.getValue(BedBlock.PART) != BedPart.HEAD) pos = pos.relative(state.getValue(BedBlock.FACING));
+        final var head = pos;
+        if (level.getServer() != null) level.getServer().getPlayerList().getPlayers().stream()
+            .sorted(java.util.Comparator.comparing(net.minecraft.server.level.ServerPlayer::getSleepTimer))
+            .filter(p -> p.getRespawnConfig() != null && p.getRespawnConfig().respawnData().dimension().equals(level.dimension()) && p.getRespawnConfig().respawnData().pos().equals(head))
+            .findFirst().ifPresent(p -> BindingUtil.bind(context.getItemInHand(), p));
+        return InteractionResult.SUCCESS;
     }
-
-    /**
-     * Binds the taglock to the player clicked on.
-     */
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        if (user.getWorld().isClient()) return ActionResult.PASS;
-        if (stack.getItem() != ModItems.TAGLOCK_KIT.getDefaultStack().getItem()) return ActionResult.PASS;
-        if (entity instanceof PlayerEntity player) {
-            if (isBound(stack)) return ActionResult.PASS;
-            bind(stack, player);
-        }
-        return super.useOnEntity(stack, user, entity, hand);
-    }
-
-    /**
-     * Updates item tooltip to display player name.
-     * If no player is bound, will display as empty.
-     */
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
-        if (isBound(stack)) {
-            checkForNameUpdate(stack, world);
-            tooltip.add(Text.translatable("text.voodoo.taglock_kit.bound", getBoundName(stack)).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
-        } else {
-            tooltip.add(Text.translatable("text.voodoo.taglock_kit.not_bound").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
-        }
+    @Override public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> tooltip, TooltipFlag flag) {
+        tooltip.accept((BindingUtil.isBound(stack) ? Component.translatable("text.voodoo.taglock_kit.bound", BindingUtil.getBoundName(stack)) : Component.translatable("text.voodoo.taglock_kit.not_bound")).withStyle(ChatFormatting.GRAY));
     }
 }

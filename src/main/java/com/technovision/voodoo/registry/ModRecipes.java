@@ -1,21 +1,13 @@
 package com.technovision.voodoo.registry;
-
 import com.technovision.voodoo.Voodoo;
 import com.technovision.voodoo.recipes.BindPoppetRecipe;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
-/**
- * Creates and registers crafting recipes.
- *
- * @author TechnoVision
- */
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.network.codec.StreamCodec;
 public class ModRecipes {
-
-    public static final SpecialRecipeSerializer<BindPoppetRecipe> BIND_POPPET_RECIPE = new SpecialRecipeSerializer<>(BindPoppetRecipe::new);
-
-    public static void registerRecipes() {
-        Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(Voodoo.MOD_ID, "bind_poppet"), BIND_POPPET_RECIPE);
-    }
+    private static final BindPoppetRecipe INSTANCE = new BindPoppetRecipe();
+    public static final RecipeSerializer<BindPoppetRecipe> BIND_POPPET_RECIPE = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Voodoo.id("bind_poppet"), new RecipeSerializer<>(MapCodec.unit(INSTANCE), StreamCodec.unit(INSTANCE)));
+    public static void registerRecipes() {}
 }

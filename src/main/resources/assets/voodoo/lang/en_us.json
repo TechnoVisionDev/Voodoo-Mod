@@ -1,6 +1,5 @@
 {
   "itemGroup.voodoo.voodoo_group": "Voodoo",
-
   "block.voodoo.poppet_shelf": "Poppet Shelf",
   "item.voodoo.needle": "Needle",
   "item.voodoo.taglock_kit": "Taglock Kit",
@@ -19,7 +18,6 @@
   "item.voodoo.hunger_protection_poppet": "Hunger Protection Poppet",
   "item.voodoo.potion_protection_poppet": "Potion Protection Poppet",
   "item.voodoo.void_protection_poppet": "Void Protection Poppet",
-
   "text.voodoo.death": "%1$s was killed by voodoo magic.",
   "text.voodoo.taglock_kit.bound": "From: %1$s",
   "text.voodoo.taglock_kit.not_bound": "Empty",
@@ -28,13 +26,12 @@
   "text.voodoo.voodoo_protection.had": "%1$s had a Voodoo Protection Poppet",
   "text.voodoo.poppet.used_up": "Your %1$s was used up",
   "screen.voodoo.poppet_shelf": "Poppet Shelf (%1$s)",
-
   "text.voodoo.poppet.disabled": "Disabled",
   "text.voodoo.poppet.needle.disabled": "Needles disabled",
   "text.voodoo.poppet.push.disabled": "Pushing disabled",
   "text.voodoo.poppet.fire.disabled": "Burning disabled",
   "text.voodoo.poppet.drowning.disabled": "Drowning disabled",
-
   "sound.poppet.voodoo_protection.used": "Voodoo Protection Poppet activated",
-  "sound.poppet.potion_protection.used": "Potion Protection Poppet activated"
+  "sound.poppet.potion_protection.used": "Potion Protection Poppet activated",
+  "item.voodoo.voodoo_manual": "Voodoo Manual"
 }

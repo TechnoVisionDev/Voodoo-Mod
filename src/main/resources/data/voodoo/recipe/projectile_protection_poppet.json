@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "THT",
+    "SPS",
+    "RNR"
+  ],
+  "key": {
+    "P": "voodoo:blank_poppet",
+    "N": "voodoo:needle",
+    "R": "minecraft:rabbit_hide",
+    "H": [
+      "minecraft:honey_block",
+      "minecraft:slime_block"
+    ],
+    "S": "minecraft:shield",
+    "T": "minecraft:target"
+  },
+  "result": {
+    "id": "voodoo:projectile_protection_poppet"
+  }
+}

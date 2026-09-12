@@ -2,10 +2,10 @@ package com.technovision.voodoo;
 
 import com.technovision.voodoo.blocks.entities.PoppetShelfBlockEntity;
 import com.technovision.voodoo.items.PoppetItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import org.apache.commons.lang3.text.WordUtils;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+
 
 import java.util.Optional;
 
@@ -15,18 +15,18 @@ import java.util.Optional;
  * @author TechnoVision
  */
 public class Poppet {
-    private final PlayerEntity player;
+    private final Player player;
     private final Optional<PoppetShelfBlockEntity> poppetShelf;
     private final PoppetItem item;
     private final ItemStack stack;
 
-    public Poppet(PoppetShelfBlockEntity poppetShelf, PlayerEntity player, PoppetItem item, ItemStack stack) {
+    public Poppet(PoppetShelfBlockEntity poppetShelf, Player player, PoppetItem item, ItemStack stack) {
         this.poppetShelf = Optional.of(poppetShelf);
         this.player = player;
         this.item = item;
         this.stack = stack;
     }
-    public Poppet(PlayerEntity player, PoppetItem item, ItemStack stack) {
+    public Poppet(Player player, PoppetItem item, ItemStack stack) {
         this.poppetShelf = Optional.empty();
         this.player = player;
         this.item = item;
@@ -53,19 +53,19 @@ public class Poppet {
     public void use(int amount) {
         int durability = item.getPoppetType().getDurability();
         if (durability > 0) {
-            stack.setDamage(stack.getDamage() + amount);
-            if (stack.getMaxDamage() <= stack.getDamage()) {
-                decrement();
+            stack.setDamageValue(stack.getDamageValue() + amount);
+            if (stack.getMaxDamage() <= stack.getDamageValue()) {
+                shrink();
             }
         } else {
-            decrement();
+            shrink();
         }
         poppetShelf.ifPresent(PoppetShelfBlockEntity::inventoryTouched);
     }
 
-    private void decrement() {
-        stack.decrement(1);
-        player.sendMessage(Text.translatable("text.voodoo.poppet.used_up", Text.translatable(item.getTranslationKey())), false);
+    private void shrink() {
+        stack.shrink(1);
+        player.sendSystemMessage(Component.translatable("text.voodoo.poppet.used_up", Component.translatable(item.getDescriptionId())));
     }
 
     public enum PoppetType {
@@ -105,7 +105,7 @@ public class Poppet {
 
         @Override
         public String toString() {
-            return WordUtils.capitalize(super.toString().replaceAll("_", " ").toLowerCase());
+            return java.util.Arrays.stream(name().toLowerCase(java.util.Locale.ROOT).split("_")).map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1)).collect(java.util.stream.Collectors.joining(" "));
         }
     }
 }

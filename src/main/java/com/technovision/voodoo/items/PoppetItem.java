@@ -1,80 +1,18 @@
 package com.technovision.voodoo.items;
-
 import com.technovision.voodoo.Poppet;
-import com.technovision.voodoo.Voodoo;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Rarity;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
-import static com.technovision.voodoo.Poppet.PoppetType.*;
-import static com.technovision.voodoo.util.BindingUtil.*;
-
-/**
- * Base poppet item.
- *
- * @author TechnoVision
- */
+import com.technovision.voodoo.util.BindingUtil;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import java.util.function.Consumer;
 public class PoppetItem extends Item {
-
     protected final Poppet.PoppetType poppetType;
-
-    public PoppetItem(Poppet.PoppetType poppetType) {
-        super(new FabricItemSettings().group(Voodoo.ITEM_GROUP).maxCount(1).maxDamage(poppetType.getDurability()));
-        this.poppetType = poppetType;
-    }
-
-    public Poppet.PoppetType getPoppetType() {
-        return poppetType;
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
-        if (poppetType == BLANK) return;
-        if (isBound(stack)) {
-            checkForNameUpdate(stack, world);
-            tooltip.add(Text.translatable("text.voodoo.poppet.bound", getBoundName(stack)).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
-        } else {
-            tooltip.add(Text.translatable("text.voodoo.poppet.not_bound").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
-        }
-    }
-
-    @Override
-    public boolean isDamageable() {
-        return poppetType.hasDurability();
-    }
-
-    @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return poppetType.getDurability();
-    }
-
-    @Override
-    public boolean isEnchantable(ItemStack stack) {
-        return false;
-    }
-
-    @Override
-    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return false;
-    }
-
-    @Override
-    public boolean hasGlint(ItemStack stack) {
-        return poppetType == VOODOO_PROTECTION || poppetType == REFLECTOR;
-    }
-
-    @Override
-    public Rarity getRarity(ItemStack stack) {
-        return hasGlint(stack) ? Rarity.RARE : poppetType == DEATH_PROTECTION ? Rarity.UNCOMMON : super.getRarity(stack);
+    public PoppetItem(Poppet.PoppetType type, Properties properties) { super(properties); this.poppetType = type; }
+    public Poppet.PoppetType getPoppetType() { return poppetType; }
+    @Override public boolean isFoil(ItemStack stack) { return poppetType == Poppet.PoppetType.VOODOO_PROTECTION || poppetType == Poppet.PoppetType.REFLECTOR; }
+    @Override public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> tooltip, TooltipFlag flag) {
+        if (poppetType == Poppet.PoppetType.BLANK) return;
+        tooltip.accept((BindingUtil.isBound(stack) ? Component.translatable("text.voodoo.poppet.bound", BindingUtil.getBoundName(stack)) : Component.translatable("text.voodoo.poppet.not_bound")).withStyle(ChatFormatting.GRAY));
     }
 }

@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "voodoo",
   "version": "${version}",
-
   "name": "Voodoo",
   "description": "Voodoo Poppets in Minecraft",
   "authors": [
@@ -12,10 +11,8 @@
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/voodoo-fabric",
     "sources": "https://github.com/TechnoVisionDev/Voodoo-Mod"
   },
-
   "license": "LGPL-3.0",
   "icon": "assets/voodoo/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -28,14 +25,10 @@
   "mixins": [
     "voodoo.mixins.json"
   ],
-
   "depends": {
-    "fabricloader": ">=0.14.6",
-    "fabric": "*",
-    "minecraft": "~1.19",
-    "java": ">=17"
-  },
-  "suggests": {
-    "patchouli": ">=1.19-72-FABRIC"
+    "fabricloader": ">=0.19.3",
+    "fabric-api": ">=0.160.0",
+    "minecraft": "~26.2",
+    "java": ">=25"
   }
 }

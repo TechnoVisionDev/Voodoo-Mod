@@ -1,7 +1,7 @@
 package com.technovision.voodoo.events;
 
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.server.level.ServerPlayer;
 
 /**
  * Stores data to be passed to DamageReceivedEvent.
@@ -10,17 +10,17 @@ import net.minecraft.server.network.ServerPlayerEntity;
  */
 public class DamageReceivedEvent {
 
-    private ServerPlayerEntity player;
+    private ServerPlayer player;
     private DamageSource source;
     private float amount;
 
-    public DamageReceivedEvent(ServerPlayerEntity player, DamageSource source, float amount) {
+    public DamageReceivedEvent(ServerPlayer player, DamageSource source, float amount) {
         this.player = player;
         this.source = source;
         this.amount = amount;
     }
 
-    public ServerPlayerEntity getPlayer() {
+    public ServerPlayer getPlayer() {
         return player;
     }
 

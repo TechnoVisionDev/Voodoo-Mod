@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "NON",
+    "ACA"
+  ],
+  "key": {
+    "C": "minecraft:green_carpet",
+    "O": "minecraft:obsidian",
+    "A": "minecraft:amethyst_shard",
+    "N": "minecraft:red_nether_bricks"
+  },
+  "result": {
+    "id": "voodoo:poppet_shelf"
+  }
+}

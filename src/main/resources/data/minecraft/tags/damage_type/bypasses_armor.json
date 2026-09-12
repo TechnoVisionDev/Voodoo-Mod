@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "voodoo:voodoo_needle",
+    "voodoo:voodoo_fire",
+    "voodoo:voodoo_water",
+    "voodoo:voodoo_vampiric"
+  ]
+}

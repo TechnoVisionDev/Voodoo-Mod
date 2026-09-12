@@ -1,21 +1,11 @@
 package com.technovision.voodoo.registry;
-
 import com.technovision.voodoo.Voodoo;
 import com.technovision.voodoo.screens.PoppetShelfScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
-/**
- * Creates and registers screen handlers
- *
- * @author TechnoVision
- */
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.flag.FeatureFlags;
 public class ModScreens {
-
-    public static ScreenHandlerType<PoppetShelfScreenHandler> POPPET_SHELF_SCREEN_HANDLER = new ScreenHandlerType<>(PoppetShelfScreenHandler::new);
-
-    public static void registerScreens() {
-        Registry.register(Registry.SCREEN_HANDLER, new Identifier(Voodoo.MOD_ID, "poppet_shelf"), new ScreenHandlerType<>(PoppetShelfScreenHandler::new));
-    }
+    public static final MenuType<PoppetShelfScreenHandler> POPPET_SHELF_SCREEN_HANDLER = Registry.register(BuiltInRegistries.MENU, Voodoo.id("poppet_shelf"), new MenuType<>(PoppetShelfScreenHandler::new, FeatureFlags.DEFAULT_FLAGS));
+    public static void registerScreens() {}
 }

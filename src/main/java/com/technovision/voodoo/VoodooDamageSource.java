@@ -1,73 +1,21 @@
 package com.technovision.voodoo;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-
-import static com.technovision.voodoo.VoodooDamageSource.VoodooDamageType.FIRE;
-
-/**
- * Custom damage source from voodoo and vampiric poppets.
- *
- * @author TechnoVision
- */
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+import java.util.Locale;
 public class VoodooDamageSource extends DamageSource {
-
-    private VoodooDamageType damageType;
-    private ItemStack voodooPoppet;
-    private Entity fromEntity;
-
-    public VoodooDamageSource(VoodooDamageType damageType, ItemStack voodooPoppet, Entity fromEntity) {
-        super("voodoo_" + damageType.toString());
-        this.damageType = damageType;
-        this.voodooPoppet = voodooPoppet;
-        this.fromEntity = fromEntity;
+    private final ItemStack voodooPoppet;
+    private final Entity fromEntity;
+    public VoodooDamageSource(VoodooDamageType type, ItemStack stack, Entity from) {
+        super(from.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, Voodoo.id("voodoo_" + type.name().toLowerCase(Locale.ROOT)))));
+        voodooPoppet = stack; fromEntity = from;
     }
-
-    @Override
-    public Text getDeathMessage(LivingEntity entity) {
-        return Text.translatable("text.voodoo.death", entity.getName().getString());
-    }
-
-    @Override
-    public boolean isFire() {
-        return damageType == FIRE;
-    }
-
-    @Override
-    public boolean bypassesArmor() {
-        return true;
-    }
-
-    @Override
-    public boolean bypassesProtection() {
-        return true;
-    }
-
-    @Override
-    public boolean isMagic() {
-        return true;
-    }
-
-    @Override
-    public boolean isScaledWithDifficulty() {
-        return false;
-    }
-
-    public ItemStack getVoodooPoppet() {
-        return voodooPoppet;
-    }
-
-    public Entity getFromEntity() {
-        return fromEntity;
-    }
-
-    public enum VoodooDamageType {
-        NEEDLE,
-        FIRE,
-        WATER,
-        VAMPIRIC
-    }
+    @Override public Component getLocalizedDeathMessage(LivingEntity entity) { return Component.translatable("text.voodoo.death", entity.getName().getString()); }
+    public ItemStack getVoodooPoppet() { return voodooPoppet; }
+    public Entity getFromEntity() { return fromEntity; }
+    public static void register() { }
+    public enum VoodooDamageType { NEEDLE, FIRE, WATER, VAMPIRIC }
 }
